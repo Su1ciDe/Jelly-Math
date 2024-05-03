@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using Fiber.Utilities;
 using Fiber.LevelSystem;
@@ -93,6 +94,15 @@ namespace Fiber.Managers
 			CurrentLevel = Instantiate(LevelNo <= TutorialLevels.Length ? TutorialLevels[index - 1] : Levels[index - 1]);
 			CurrentLevel.Load();
 			OnLevelLoad?.Invoke();
+
+			StartCoroutine(StartLevelCoroutine());
+			return;
+
+			IEnumerator StartLevelCoroutine()
+			{
+				yield return null;
+				StartLevel();
+			}
 		}
 
 		public void StartLevel()
