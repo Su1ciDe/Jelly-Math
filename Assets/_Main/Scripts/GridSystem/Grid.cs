@@ -23,10 +23,6 @@ namespace GridSystem
 		[SerializeField] private List<GridNodeHolder> gridNodeHolders = new List<GridNodeHolder>();
 		public List<GridNodeHolder> GridNodeHolders => gridNodeHolders;
 
-		private void Start()
-		{
-		}
-
 		#region Setup
 
 		private void Setup()

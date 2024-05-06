@@ -16,6 +16,7 @@ namespace GamePlay.Player
 		public Shape SelectedShape { get; private set; }
 
 		[SerializeField] private Vector3 offset;
+		[SerializeField] private float moveDamping = 10;
 		[SerializeField] private float rotationDamping = 5;
 		[SerializeField] private float rotationClamp = 75;
 		[Space]
@@ -83,7 +84,7 @@ namespace GamePlay.Player
 				var position = hit.point + offset;
 
 				var rotateTo = Quaternion.Euler(new Vector3(Mathf.Clamp(-finger.ScreenDelta.y, -rotationClamp, rotationClamp), 0, Mathf.Clamp(finger.ScreenDelta.x, -rotationClamp, rotationClamp)));
-				SelectedShape.Move(position, rotateTo, rotationDamping);
+				SelectedShape.Move(position,moveDamping, rotateTo, rotationDamping);
 				OnMove?.Invoke(position);
 			}
 		}

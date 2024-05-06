@@ -10,7 +10,7 @@ namespace GridSystem
 
 		public bool IsShowingHighlight => highlight.gameObject.activeSelf;
 
-		public Vector2Int Coordinates { get; private set; }
+		[field: SerializeField, HideInInspector] public Vector2Int Coordinates { get; private set; }
 		public int Index { get; private set; }
 
 		[SerializeField] private MeshRenderer highlight;
@@ -29,7 +29,6 @@ namespace GridSystem
 		{
 			// if (IsShowingHighlight) return;
 
-			Debug.Log(CurrentNode);
 			if (CurrentNode is not null && !CurrentShape)
 			{
 				highlight.gameObject.SetActive(true);
