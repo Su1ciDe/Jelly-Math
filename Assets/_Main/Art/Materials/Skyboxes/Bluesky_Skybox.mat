@@ -13,11 +13,7 @@ Material:
   m_InvalidKeywords:
   - _CUBEMAPSKY_ON
   - _CUSTOMFOGCOLOR_ON
-  - _ENABLEFOG_ON
-  - _ENABLEHAZE_ON
   - _ENABLEPOSITION_ON
-  - _ENABLEROTATION_ON
-  - _GRADIENT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -84,7 +80,7 @@ Material:
     - _DstBlend: 0
     - _EnableFog: 0
     - _EnableHaze: 0
-    - _EnablePosition: 0
+    - _EnablePosition: 1
     - _EnableRotation: 0
     - _Exposure: 1
     - _Falloff: 0.5
@@ -107,11 +103,11 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PositionX: 0
+    - _PositionX: 4
     - _PositionY: 0
     - _PositionZ: 0
     - _Power: 1
-    - _Rotation: 0
+    - _Rotation: 327
     - _RotationSpeed: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
