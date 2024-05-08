@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using GridSystem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using Grid = GridSystem.Grid;
@@ -14,11 +15,20 @@ namespace GamePlay
 		public bool CanMove { get; set; } = true;
 
 		[SerializeField] private Transform model;
+		public ShapeDetector[] Detectors => detectors;
 		[SerializeField] private ShapeDetector[] detectors;
+		[Space]
+		[SerializeField] private TextMeshPro txtValue;
 
+		private Vector3 startingPosition;
 		private readonly List<GridNodeHolder> touchingGridNodeHolders = new List<GridNodeHolder>();
 
 		public static event UnityAction<Shape> OnPlace;
+
+		private void Awake()
+		{
+			txtValue.transform.up = Vector3.up;
+		}
 
 		public void Move(Vector3 movePosition, float moveDamping, Quaternion rotateTo, float rotationDamping)
 		{
@@ -31,31 +41,15 @@ namespace GamePlay
 				detectors[i].GetNearestCell();
 				detectors[i].CurrentCell?.ShowHighlight();
 			}
-
-			// var nearestNode = GetNearestNode();
-			// if (currentNearestGridCell)
-			// {
-			// 	if (!currentNearestGridCell.Equals(nearestNode))
-			// 	{
-			// 		currentNearestGridCell.HideHighlight();
-			// 	}
-			// }
-			//
-			// currentNearestGridCell = nearestNode;
-			// if (currentNearestGridCell && !currentNearestGridCell.IsShowingHighlight)
-			// {
-			// 	currentNearestGridCell.ShowHighlight();
-			// 	HapticManager.Instance.PlayHaptic(0.3f, 0);
-			// }
 		}
 
 		public void OnRelease()
 		{
 			if (touchingGridNodeHolders.Count > 0)
 			{
-				// TODO: clear values
 				for (var i = 0; i < touchingGridNodeHolders.Count; i++)
 				{
+					touchingGridNodeHolders[i].RemoveShape(this);
 				}
 
 				touchingGridNodeHolders.Clear();
@@ -78,15 +72,13 @@ namespace GamePlay
 		{
 			for (var i = 0; i < detectors.Length; i++)
 			{
-				if (!touchingGridNodeHolders.Contains(detectors[i].CurrentCell.CurrentNode.ParentHolder))
+				var holder = detectors[i].CurrentCell.CurrentNode.ParentHolder;
+				if (!holder) continue;
+				if (!touchingGridNodeHolders.Contains(holder))
 				{
-					touchingGridNodeHolders.Add(detectors[i].CurrentCell.CurrentNode.ParentHolder);
+					touchingGridNodeHolders.Add(holder);
+					holder.PlaceShape(this);
 				}
-			}
-
-			for (var i = 0; i < touchingGridNodeHolders.Count; i++)
-			{
-				touchingGridNodeHolders[i].PlaceShape(this);
 			}
 
 			var pos = GetMiddlePointOfDetectedCells();
@@ -95,11 +87,11 @@ namespace GamePlay
 			OnPlace?.Invoke(this);
 		}
 
-		private void ResetPosition()
+		public void ResetPosition()
 		{
 		}
 
-		private void ResetRotation()
+		public void ResetRotation()
 		{
 			// model.DORotateQuaternion(Quaternion.identity, .1f);
 		}
@@ -147,6 +139,12 @@ namespace GamePlay
 			}
 
 			return (xBiggest, yBiggest, xSmallest, ySmallest);
+		}
+
+		public void SetValue(int value)
+		{
+			Value = value;
+			txtValue.SetText(Value.ToString());
 		}
 	}
 }

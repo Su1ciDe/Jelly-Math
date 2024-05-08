@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726fc5ccf5d74aed975a10e27c76e25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinates: {x: 2, y: 1}
 --- !u!1 &4989452629182160993
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726fc5ccf5d74aed975a10e27c76e25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinates: {x: 1, y: 0}
 --- !u!1 &6344928123672533173
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +342,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726fc5ccf5d74aed975a10e27c76e25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinates: {x: 2, y: 0}
 --- !u!1 &6803528432897460118
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 726fc5ccf5d74aed975a10e27c76e25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coordinates: {x: 0, y: 0}
 --- !u!1 &7509514179844874457
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,6 +575,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 767350978284917561, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1653479234958008269, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_RootOrder
       value: 0

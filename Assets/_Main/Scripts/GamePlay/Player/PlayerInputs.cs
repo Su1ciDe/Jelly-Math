@@ -84,7 +84,7 @@ namespace GamePlay.Player
 				var position = hit.point + offset;
 
 				var rotateTo = Quaternion.Euler(new Vector3(Mathf.Clamp(-finger.ScreenDelta.y, -rotationClamp, rotationClamp), 0, Mathf.Clamp(finger.ScreenDelta.x, -rotationClamp, rotationClamp)));
-				SelectedShape.Move(position,moveDamping, rotateTo, rotationDamping);
+				SelectedShape.Move(position, moveDamping, rotateTo, rotationDamping);
 				OnMove?.Invoke(position);
 			}
 		}
@@ -116,11 +116,23 @@ namespace GamePlay.Player
 
 		private void OnLevelWon()
 		{
+			if (SelectedShape)
+			{
+				SelectedShape.ResetPosition();
+				SelectedShape.ResetRotation();
+			}
+
 			CanInput = false;
 		}
 
 		private void OnLevelLost()
 		{
+			if (SelectedShape)
+			{
+				SelectedShape.ResetPosition();
+				SelectedShape.ResetRotation();
+			}
+
 			CanInput = false;
 		}
 	}

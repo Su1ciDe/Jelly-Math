@@ -1,10 +1,14 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="ColorPicker" src="project://database/Assets/_Main/LevelEditor/ColorPicker.uxml?fileID=9197481963319205126&amp;guid=14246e6ab2d746038555a62f414f47c3&amp;type=3#ColorPicker" />
     <Style src="project://database/Assets/_Main/LevelEditor/LevelEditor.uss?fileID=7433441132597879392&amp;guid=63203cc792eb549c5b3851374e8af02f&amp;type=3#LevelEditor" />
-    <ui:VisualElement name="MainVisualElement" style="flex-grow: 1; flex-direction: row;">
+    <ui:VisualElement name="Main" style="flex-grow: 1;">
+        <ui:VisualElement name="MainTabsRowVisualElement" style="flex-grow: 1; flex-direction: row; height: 50px;" />
+        <ui:VisualElement name="MainVisualElement" style="flex-grow: 1; width: 100%; height: 100%;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="MainGridVisualElement" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="HolderSectionVisualElement" class="bordered-box" style="flex-basis: 180px;">
             <ui:Label text="Grid Holders" display-tooltip-when-elided="true" name="lbl_HolderHeader" tabindex="-1" class="header" />
-            <ui:ListView focusable="true" name="listViewHolders" />
+            <ui:ListView focusable="false" name="listViewHolders" virtualization-method="DynamicHeight" show-border="true" />
         </ui:VisualElement>
         <ui:VisualElement name="GridSectionVisualElement" class="bordered-box" style="flex-grow: 1;">
             <ui:Label text="Grid" display-tooltip-when-elided="true" name="lbl_Grid" tabindex="-1" class="header" />
@@ -17,13 +21,33 @@
                 <ui:Button text="+" display-tooltip-when-elided="true" name="btn_AddTab" focusable="false" style="flex-shrink: 0; flex-grow: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 10px; padding-right: 12px; padding-bottom: 10px; padding-left: 12px; -unity-font-style: bold; font-size: 30px; color: rgb(12, 12, 12); width: 30px; height: 30px;" />
             </ui:VisualElement>
             <ui:VisualElement name="GridVisualElement" style="flex-grow: 1; margin-top: 8px; margin-right: 3px; margin-left: 3px; width: 100%; flex-basis: 100%; align-items: flex-start; position: relative; left: auto;" />
-            <ui:VisualElement name="OptionsVisualElement" style="height: 70px;">
-                <ui:Label text="Options" display-tooltip-when-elided="true" name="lbl_Options" class="header" />
-                <ui:VisualElement name="SaveVisualElement" style="flex-direction: row;">
-                    <ui:TextField picking-mode="Ignore" label="Level No" name="txt_LevelNo" style="width: 300px;" />
-                    <ui:Button text="Save" display-tooltip-when-elided="true" name="btn_Save" />
-                </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="MainDeckVisualElement" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="ShapesVisualElement" class="bordered-box" style="flex-basis: 180px;">
+            <ui:Label text="Shapes" display-tooltip-when-elided="true" name="lbl_HolderHeader" tabindex="-1" class="header" />
+            <ui:ListView focusable="false" name="listViewShapes" virtualization-method="DynamicHeight" fixed-item-height="140" show-border="true" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="DeckSectionVisualElement" class="bordered-box" style="flex-grow: 1;">
+            <ui:Label text="Deck" display-tooltip-when-elided="true" name="lbl_Deck" tabindex="-1" class="header" />
+            <ui:VisualElement name="SetupVisualElement" style="flex-grow: 1; min-height: 30px; flex-direction: row;">
+                <ui:TextField picking-mode="Ignore" label="x" value="1" text="1" name="txt_DeckX" style="width: 200px;" />
+                <ui:TextField picking-mode="Ignore" label="y" value="1" text="1" name="txt_DeckY" style="width: 200px;" />
+                <ui:Button text="Setup" display-tooltip-when-elided="true" name="btn_DeckSetup" />
             </ui:VisualElement>
+            <ui:TextField picking-mode="Ignore" label="Shape Value:" value="1" text="0" name="txt_ShapeValue" style="flex-grow: 1;" />
+            <ui:VisualElement name="DeckTabsVisualElement" style="flex-grow: 1; flex-direction: row; min-width: 30px; min-height: auto;">
+                <ui:VisualElement name="DeckTabsRowVisualElement" style="flex-direction: row; flex-grow: 1;" />
+                <ui:Button text="+" display-tooltip-when-elided="true" name="btn_AddDeckTab" focusable="false" style="flex-shrink: 0; flex-grow: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 10px; padding-right: 12px; padding-bottom: 10px; padding-left: 12px; -unity-font-style: bold; font-size: 30px; color: rgb(12, 12, 12); width: 30px; height: 30px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="DeckVisualElement" style="flex-grow: 1; margin-top: 8px; margin-right: 3px; margin-left: 3px; width: 100%; flex-basis: 100%; align-items: flex-start; position: relative; left: auto;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="OptionsVisualElement" style="height: 70px;">
+        <ui:Label text="Options" display-tooltip-when-elided="true" name="lbl_Options" class="header" />
+        <ui:VisualElement name="SaveVisualElement" style="flex-direction: row;">
+            <ui:TextField picking-mode="Ignore" label="Level No" name="txt_LevelNo" style="width: 300px;" />
+            <ui:Button text="Save" display-tooltip-when-elided="true" name="btn_Save" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

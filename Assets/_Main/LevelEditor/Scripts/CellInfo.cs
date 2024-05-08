@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace LevelEditor
 {
-	public struct CellInfo
+	public class CellInfo
 	{
 		public string Id;
 		public Vector2Int Coordinates;

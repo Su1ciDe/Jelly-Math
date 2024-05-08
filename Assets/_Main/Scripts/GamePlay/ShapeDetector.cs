@@ -8,6 +8,9 @@ namespace GamePlay
 	{
 		public GridCell CurrentCell { get; private set; }
 
+		public Vector2Int Coordinates => coordinates;
+		[SerializeField] private Vector2Int coordinates;
+
 		private GridCell currentNearestGridCell;
 		private readonly List<GridCell> triggeredCells = new List<GridCell>();
 
