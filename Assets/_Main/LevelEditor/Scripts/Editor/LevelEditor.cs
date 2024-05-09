@@ -128,7 +128,7 @@ namespace LevelEditor
 
 			// Grid
 			listViewHolders = rootVisualElement.Q<ListView>(nameof(listViewHolders));
-
+			
 			ColorPicker = rootVisualElement.Q<ColorField>("the-color-field");
 			ColorPicker.value = Color.black;
 			ColorPicker.showAlpha = false;
@@ -206,7 +206,7 @@ namespace LevelEditor
 		#endregion
 
 		#region Holders
-
+		
 		private void OnCellClicked(IMouseEvent e, CellInfo cell)
 		{
 			if (cell.Button is null) return;
@@ -246,6 +246,7 @@ namespace LevelEditor
 			var pair = EditorUtilities.CreateVisualElement<VisualElement>("holder");
 			pair.style.backgroundColor = color;
 			var inputField = EditorUtilities.CreateVisualElement<IntegerField>();
+			inputField.maxLength = 2;
 			colorHolderPair[color].IntegerField = inputField;
 			inputField.RegisterValueChangedCallback(evt =>
 			{
@@ -259,7 +260,9 @@ namespace LevelEditor
 			});
 
 			pair.Add(inputField);
-			listViewHolders.Add(pair);
+			listViewHolders.hierarchy[0].hierarchy[0].hierarchy[0].hierarchy[0].Add(pair);
+
+			listViewHolders.RefreshItems();
 		}
 
 		private void OnColorRemoved(CellInfo cell)
@@ -270,10 +273,12 @@ namespace LevelEditor
 				// Weird
 				var deletedCell = holder.Cells.Find(x => x.Coordinates.Equals(cell.Coordinates));
 				holder.Cells.Remove(deletedCell);
+				deletedCell.Button.text = "";
 				if (holder.Cells.Count <= 0)
 				{
 					colorHolderPair.Remove(button.style.backgroundColor.value);
-					listViewHolders.hierarchy.Remove(holder.IntegerField.parent);
+					listViewHolders.hierarchy[0].hierarchy[0].hierarchy[0].hierarchy[0].Remove(holder.IntegerField.parent);
+					listViewHolders.RefreshItems();
 				}
 			}
 
@@ -457,13 +462,11 @@ namespace LevelEditor
 			{
 				var radio = (RadioButton)element;
 
-				radio.name = "Block_" + i;
+				radio.name = "Shape_" + i;
 				radio.label = shapes[i].Shape.name;
 				LevelEditorUtilities.LoadAssetPreview(radio, shapeObjects[i], this);
-				radio.style.minHeight = 144;
-				radio.style.height = 144;
 
-				radio.RegisterValueChangedCallback(evt => SelectShape(radio.value, shapes[i].Shape));
+				radio.RegisterValueChangedCallback(evt => SelectShape(evt.newValue, shapes[i].Shape));
 			}
 		}
 
@@ -480,6 +483,7 @@ namespace LevelEditor
 
 		private bool hasDeckSetup = false;
 		private List<DeckCellInfo[,]> deckCells;
+		private Dictionary<string, List<Vector2Int>> shapePairs = new Dictionary<string, List<Vector2Int>>();
 
 		private void SetupDeckGrid()
 		{
@@ -519,7 +523,7 @@ namespace LevelEditor
 					     button.style.backgroundColor = cellTypeColorPair[selectedCellType];
 					 };*/
 
-					// button.RegisterCallback<PointerDownEvent>(e => Delete(e.clickCount, i1, x1, y1), TrickleDown.TrickleDown);
+					button.RegisterCallback<PointerDownEvent>(e => Delete(e.clickCount, i1, x1, y1), TrickleDown.TrickleDown);
 					button.RegisterCallback<MouseDownEvent>(e => OnClickedDeckGrid(e, i1, x1, y1), TrickleDown.TrickleDown);
 					button.RegisterCallback<MouseEnterEvent>(e => Recolor(i1, x1, y1));
 					button.RegisterCallback<MouseLeaveEvent>(e => ClearShape(i1));
@@ -587,6 +591,10 @@ namespace LevelEditor
 					deckCells[tabIndex][x1, y1].Id = id;
 					deckCells[tabIndex][x1, y1].Direction = direction;
 					deckCells[tabIndex][x1, y1].Value = int.Parse(txt_ShapeValue.value);
+
+					if (!shapePairs.ContainsKey(id))
+						shapePairs.Add(id, new List<Vector2Int>());
+					shapePairs[id].Add(new Vector2Int(x1, y1));
 				}
 			}
 		}
@@ -642,31 +650,60 @@ namespace LevelEditor
 					}
 				}
 			}
-			else
+			// else
+			// {
+			// if (selectedCellType != CellType.Empty)
+			// {
+			// 	if (cells[tabIndex][x, y].type == CellType.Empty)
+			// 	{
+			// 		tabs[tabIndex].Grid.ElementAt(y).ElementAt(x).style.backgroundColor = cellTypeColorPair[selectedCellType];
+			// 	}
+			// 	else
+			// 	{
+			// 		if (cells[tabIndex][x, y].type == CellType.Empty)
+			// 			tabs[tabIndex].Grid.ElementAt(y).ElementAt(x).style.backgroundColor = Color.red;
+			// 	}
+			// }
+			// }
+		}
+
+		private void Delete(int clickCount, int tabIndex, int x, int y)
+		{
+			if (clickCount <= 1) return;
+
+			var width = deckCells[tabIndex].GetLength(0);
+			var height = deckCells[tabIndex].GetLength(1);
+			var grid = deckCells[tabIndex][x, y];
+			for (int i = 0; i < width; i++)
 			{
-				// if (selectedCellType != CellType.Empty)
-				// {
-				// 	if (cells[tabIndex][x, y].type == CellType.Empty)
-				// 	{
-				// 		tabs[tabIndex].Grid.ElementAt(y).ElementAt(x).style.backgroundColor = cellTypeColorPair[selectedCellType];
-				// 	}
-				// 	else
-				// 	{
-				// 		if (cells[tabIndex][x, y].type == CellType.Empty)
-				// 			tabs[tabIndex].Grid.ElementAt(y).ElementAt(x).style.backgroundColor = Color.red;
-				// 	}
-				// }
+				for (int j = 0; j < height; j++)
+				{
+					if (deckCells[tabIndex][i, j].Id == grid.Id)
+						EditorCoroutineUtility.StartCoroutine(DeleteCoroutine(tabIndex, i, j), this);
+				}
 			}
+		}
+
+		private IEnumerator DeleteCoroutine(int tabIndex, int x1, int y1)
+		{
+			yield return new WaitForSeconds(0.1f);
+
+			deckCells[tabIndex][x1, y1].Shape = null;
+			deckCells[tabIndex][x1, y1].Id = null;
+			deckCells[tabIndex][x1, y1].Value = 0;
+			deckTabs[tabIndex].VisualElement.ElementAt(y1).ElementAt(x1).style.backgroundColor = Color.white;
+			var btn = (Button)deckTabs[tabIndex].VisualElement.ElementAt(y1).ElementAt(x1);
+			btn.text = "";
 		}
 
 		private int GetDeckGridX(int x, int i)
 		{
 			return direction switch
 			{
-				Directions.Up => x - selectedShape.Detectors[i].Coordinates.x,
-				Directions.Right => x - selectedShape.Detectors[i].Coordinates.y,
-				Directions.Left => x - -selectedShape.Detectors[i].Coordinates.y,
-				Directions.Down => x - -selectedShape.Detectors[i].Coordinates.x,
+				Directions.Up => x - -selectedShape.Detectors[i].Coordinates.y,
+				Directions.Right => x - -selectedShape.Detectors[i].Coordinates.x,
+				Directions.Left => x - selectedShape.Detectors[i].Coordinates.x,
+				Directions.Down => x - selectedShape.Detectors[i].Coordinates.y,
 				_ => throw new ArgumentOutOfRangeException()
 			};
 		}
@@ -675,10 +712,10 @@ namespace LevelEditor
 		{
 			return direction switch
 			{
-				Directions.Up => y - selectedShape.Detectors[i].Coordinates.y,
-				Directions.Right => y - -selectedShape.Detectors[i].Coordinates.x,
-				Directions.Left => y - selectedShape.Detectors[i].Coordinates.x,
-				Directions.Down => y - -selectedShape.Detectors[i].Coordinates.y,
+				Directions.Up => y - -selectedShape.Detectors[i].Coordinates.x,
+				Directions.Right => y - -selectedShape.Detectors[i].Coordinates.y,
+				Directions.Left => y - -selectedShape.Detectors[i].Coordinates.y,
+				Directions.Down => y - selectedShape.Detectors[i].Coordinates.x,
 				_ => throw new ArgumentOutOfRangeException()
 			};
 		}
@@ -708,7 +745,7 @@ namespace LevelEditor
 
 			//
 			levelBase.GridManager.SetupGrids(colorHolderPair, gridCells.Count);
-			// levelBase.DeckManager.SetupDecks(,deckCells.Count);
+			levelBase.DeckManager.SetupDecks(deckCells, shapePairs);
 			//
 
 			var levelPath = $"{LEVELS_PATH}Level_{levelNo:000}.prefab";

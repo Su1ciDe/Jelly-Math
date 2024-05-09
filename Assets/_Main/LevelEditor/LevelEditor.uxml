@@ -8,7 +8,7 @@
     <ui:VisualElement name="MainGridVisualElement" style="flex-grow: 1; flex-direction: row;">
         <ui:VisualElement name="HolderSectionVisualElement" class="bordered-box" style="flex-basis: 180px;">
             <ui:Label text="Grid Holders" display-tooltip-when-elided="true" name="lbl_HolderHeader" tabindex="-1" class="header" />
-            <ui:ListView focusable="false" name="listViewHolders" virtualization-method="DynamicHeight" show-border="true" />
+            <ui:ListView focusable="true" name="listViewHolders" virtualization-method="DynamicHeight" show-border="false" />
         </ui:VisualElement>
         <ui:VisualElement name="GridSectionVisualElement" class="bordered-box" style="flex-grow: 1;">
             <ui:Label text="Grid" display-tooltip-when-elided="true" name="lbl_Grid" tabindex="-1" class="header" />

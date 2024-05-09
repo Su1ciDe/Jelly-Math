@@ -11,6 +11,8 @@ namespace GamePlay
 		public Vector2Int Coordinates => coordinates;
 		[SerializeField] private Vector2Int coordinates;
 
+		[SerializeField] private Collider col;
+
 		private GridCell currentNearestGridCell;
 		private readonly List<GridCell> triggeredCells = new List<GridCell>();
 
@@ -54,6 +56,12 @@ namespace GamePlay
 
 			CurrentCell = nearestCell;
 			return nearestCell;
+		}
+
+
+		public void SetActiveDetector(bool active)
+		{
+			col.enabled = active;
 		}
 	}
 }

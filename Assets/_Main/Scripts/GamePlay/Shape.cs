@@ -20,7 +20,7 @@ namespace GamePlay
 		[Space]
 		[SerializeField] private TextMeshPro txtValue;
 
-		private Vector3 startingPosition;
+		[SerializeField] [HideInInspector] private Vector3 startingPosition;
 		private readonly List<GridNodeHolder> touchingGridNodeHolders = new List<GridNodeHolder>();
 
 		public static event UnityAction<Shape> OnPlace;
@@ -28,6 +28,12 @@ namespace GamePlay
 		private void Awake()
 		{
 			txtValue.transform.up = Vector3.up;
+		}
+
+		public void Setup(int value)
+		{
+			SetValue(value);
+			startingPosition = transform.position;
 		}
 
 		public void Move(Vector3 movePosition, float moveDamping, Quaternion rotateTo, float rotationDamping)
@@ -41,6 +47,11 @@ namespace GamePlay
 				detectors[i].GetNearestCell();
 				detectors[i].CurrentCell?.ShowHighlight();
 			}
+		}
+
+		public void OnPickUp()
+		{
+			SetActiveDetectors(true);
 		}
 
 		public void OnRelease()
@@ -83,12 +94,16 @@ namespace GamePlay
 
 			var pos = GetMiddlePointOfDetectedCells();
 			transform.DOMove(pos, .35f).SetEase(Ease.OutBack);
+			
+			SetActiveDetectors(false);
 
 			OnPlace?.Invoke(this);
 		}
 
 		public void ResetPosition()
 		{
+			CanMove = false;
+			transform.DOMove(startingPosition, .35f).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
 		}
 
 		public void ResetRotation()
@@ -145,6 +160,12 @@ namespace GamePlay
 		{
 			Value = value;
 			txtValue.SetText(Value.ToString());
+		}
+
+		public void SetActiveDetectors(bool active)
+		{
+			for (int i = 0; i < detectors.Length; i++)
+				detectors[i].SetActiveDetector(active);
 		}
 	}
 }
