@@ -35,7 +35,7 @@
                 <ui:TextField picking-mode="Ignore" label="y" value="1" text="1" name="txt_DeckY" style="width: 200px;" />
                 <ui:Button text="Setup" display-tooltip-when-elided="true" name="btn_DeckSetup" />
             </ui:VisualElement>
-            <ui:TextField picking-mode="Ignore" label="Shape Value:" value="1" text="0" name="txt_ShapeValue" style="flex-grow: 1;" />
+            <ui:TextField picking-mode="Ignore" label="Shape Value:" value="1" text="1" name="txt_ShapeValue" style="flex-grow: 1;" />
             <ui:VisualElement name="DeckTabsVisualElement" style="flex-grow: 1; flex-direction: row; min-width: 30px; min-height: auto;">
                 <ui:VisualElement name="DeckTabsRowVisualElement" style="flex-direction: row; flex-grow: 1;" />
                 <ui:Button text="+" display-tooltip-when-elided="true" name="btn_AddDeckTab" focusable="false" style="flex-shrink: 0; flex-grow: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 10px; padding-right: 12px; padding-bottom: 10px; padding-left: 12px; -unity-font-style: bold; font-size: 30px; color: rgb(12, 12, 12); width: 30px; height: 30px;" />

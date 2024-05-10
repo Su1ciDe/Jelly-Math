@@ -161,6 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caab2fa7887747ac8f5c3481a783e99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <CurrentNode>k__BackingField: {fileID: 0}
+  <Coordinates>k__BackingField: {x: 0, y: 0}
   highlight: {fileID: 7598653514147454904}
   negativeHighlight: {fileID: 6284140383495633363}
 --- !u!1 &2734175409493597932
