@@ -3,12 +3,14 @@ using Fiber.Utilities;
 using LevelEditor;
 using UnityEditor;
 using UnityEngine;
+using Utilities;
 
 namespace GridSystem
 {
 	public class Grid : Singleton<Grid>
 	{
-		[SerializeField] private Vector2Int size = new Vector2Int(10, 10);
+		public static Vector2Int Size = new Vector2Int(10, 10);
+
 		[SerializeField] private Vector2 nodeSize = new Vector2(1, 1);
 		[SerializeField] private float xSpacing = .1f;
 		[SerializeField] private float ySpacing = .1f;
@@ -16,6 +18,8 @@ namespace GridSystem
 		[Space]
 		[SerializeField] private GridNodeHolder gridNodeHolderPrefab;
 		[SerializeField] private GridNode gridNodePrefab;
+		[Space]
+		[SerializeField] private GridNodeIndicator gridNodeIndicatorPrefab;
 		[Space]
 		[SerializeField] private GameObject fillerPrefab;
 		[SerializeField] private GameObject fillerDotPrefab;
@@ -28,38 +32,19 @@ namespace GridSystem
 
 		#region Setup
 
-		private void Setup()
-		{
-			gridCells = new GridCellMatrix(size.x, size.y);
-
-			var xOffset = (nodeSize.x * size.x + xSpacing * (size.x - 1)) / 2f - nodeSize.x / 2f;
-			var yOffset = (nodeSize.y * size.y + ySpacing * (size.y - 1)) / 2f - nodeSize.y / 2f;
-			for (int y = 0; y < size.y; y++)
-			{
-				for (int x = 0; x < size.x; x++)
-				{
-					var cell = Instantiate(cellPrefab, transform);
-					cell.Setup(x, y, size.y * y + x, nodeSize);
-					cell.gameObject.name = x + " - " + y;
-					cell.transform.localPosition = new Vector3(x * (nodeSize.x + xSpacing) - xOffset, 0, -y * (nodeSize.y + ySpacing) + yOffset);
-					gridCells[x, y] = cell;
-				}
-			}
-		}
-
 #if UNITY_EDITOR
 		public void SetupEditor(Dictionary<Color, GridNodeInfo> nodeHolderInfos)
 		{
-			gridCells = new GridCellMatrix(size.x, size.y);
+			gridCells = new GridCellMatrix(Size.x, Size.y);
 
-			var xOffset = (nodeSize.x * size.x + xSpacing * (size.x - 1)) / 2f - nodeSize.x / 2f;
-			var yOffset = (nodeSize.y * size.y + ySpacing * (size.y - 1)) / 2f - nodeSize.y / 2f;
-			for (int y = 0; y < size.y; y++)
+			var xOffset = (nodeSize.x * Size.x + xSpacing * (Size.x - 1)) / 2f - nodeSize.x / 2f;
+			var yOffset = (nodeSize.y * Size.y + ySpacing * (Size.y - 1)) / 2f - nodeSize.y / 2f;
+			for (int y = 0; y < Size.y; y++)
 			{
-				for (int x = 0; x < size.x; x++)
+				for (int x = 0; x < Size.x; x++)
 				{
 					var cell = (GridCell)PrefabUtility.InstantiatePrefab(cellPrefab, transform);
-					cell.Setup(x, y, size.y * y + x, nodeSize);
+					cell.Setup(x, y, Size.y * y + x, nodeSize);
 					cell.gameObject.name = x + " - " + y;
 					cell.transform.localPosition = new Vector3(x * (nodeSize.x + xSpacing) - xOffset, 0, -y * (nodeSize.y + ySpacing) + yOffset);
 					gridCells[x, y] = cell;
@@ -77,7 +62,7 @@ namespace GridSystem
 					var node = (GridNode)PrefabUtility.InstantiatePrefab(gridNodePrefab, holder.transform);
 					var cell = gridCells[cellInfo.Coordinates.x, cellInfo.Coordinates.y];
 					node.transform.position = cell.transform.position;
-					node.Setup(holder, holder.Value, cellInfo.Coordinates);
+					node.Setup(holder, cellInfo.Coordinates);
 					cell.CurrentNode = node;
 
 					holder.GridNodes.Add(node);
@@ -86,32 +71,53 @@ namespace GridSystem
 				gridNodeHolders.Add(holder);
 			}
 
-			// fillers
 			foreach (var gridNodeHolder in gridNodeHolders)
 			{
+				bool setupIndicator = false;
 				foreach (var gridNode in gridNodeHolder.GridNodes)
 				{
+					// fillers
 					var coor = gridNode.Coordinates;
+					var coorRight = coor + Direction.Right;
+					var coorDown = coor + Direction.Up;
 
-					if (coor.x + 1 < gridCells.GetLength(0) && gridCells[coor.x + 1, coor.y].CurrentNode && gridCells[coor.x + 1, coor.y].CurrentNode.ParentHolder.Equals(gridNode.ParentHolder))
+					if (coorRight.x < gridCells.GetLength(0) && GetCell(coorRight).CurrentNode && GetCell(coorRight).CurrentNode.ParentHolder.Equals(gridNode.ParentHolder))
 					{
-						var filler = Instantiate(fillerPrefab, transform);
-						filler.transform.localPosition = gridCells[coor.x, coor.y].transform.localPosition + .55f * Vector3.right;
+						var filler = Instantiate(fillerPrefab, gridNodeHolder.transform);
+						filler.transform.localPosition = gridNode.transform.localPosition + .55f * Vector3.right;
 						filler.transform.localEulerAngles = 90 * Vector3.up;
 					}
 
-					if (coor.y + 1 < gridCells.GetLength(1) && gridCells[coor.x, coor.y + 1].CurrentNode && gridCells[coor.x, coor.y + 1].CurrentNode.ParentHolder.Equals(gridNode.ParentHolder))
+					if (coorDown.y < gridCells.GetLength(1) && GetCell(coorDown).CurrentNode && GetCell(coorDown).CurrentNode.ParentHolder.Equals(gridNode.ParentHolder))
 					{
-						var filler = Instantiate(fillerPrefab, transform);
-						filler.transform.localPosition = gridCells[coor.x, coor.y].transform.localPosition + .55f * Vector3.back;
+						var filler = Instantiate(fillerPrefab, gridNodeHolder.transform);
+						filler.transform.localPosition = gridNode.transform.localPosition + .55f * Vector3.back;
 					}
 
-					if ((coor.x + 1 < gridCells.GetLength(0) && gridCells[coor.x + 1, coor.y].CurrentNode && gridCells[coor.x + 1, coor.y].CurrentNode.ParentHolder.Equals(gridNode.ParentHolder)) &&
-					    (coor.y + 1 < gridCells.GetLength(1) && gridCells[coor.x, coor.y + 1].CurrentNode && gridCells[coor.x, coor.y + 1].CurrentNode.ParentHolder.Equals(gridNode.ParentHolder)) &&
+					if ((coorRight.x < gridCells.GetLength(0) && GetCell(coorRight).CurrentNode && GetCell(coorRight).CurrentNode.ParentHolder.Equals(gridNode.ParentHolder)) &&
+					    (coorDown.y < gridCells.GetLength(1) && GetCell(coorDown).CurrentNode && GetCell(coorDown).CurrentNode.ParentHolder.Equals(gridNode.ParentHolder)) &&
 					    (gridCells[coor.x + 1, coor.y + 1].CurrentNode && gridCells[coor.x + 1, coor.y + 1].CurrentNode.ParentHolder.Equals(gridNode.ParentHolder)))
 					{
-						var filler = Instantiate(fillerDotPrefab, transform);
-						filler.transform.localPosition = gridCells[coor.x, coor.y].transform.localPosition + new Vector3(0.55f, 0, -0.55f);
+						var filler = Instantiate(fillerDotPrefab, gridNodeHolder.transform);
+						filler.transform.localPosition = gridNode.transform.localPosition + new Vector3(0.55f, 0, -0.55f);
+					}
+
+					// Indicator
+					if (setupIndicator) continue;
+					for (int i = 0; i < Direction.Directions.Length; i++)
+					{
+						var newCoor = gridNode.Coordinates + Direction.Directions[i];
+						if (!GetCell(newCoor).CurrentNode)
+						{
+							var indicator = Instantiate(gridNodeIndicatorPrefab, gridNodeHolder.transform);
+							var adjacentCell = GetCell(newCoor);
+							var dir = (adjacentCell.transform.position - gridNode.transform.position).normalized;
+							indicator.transform.position = gridNode.transform.position + new Vector3(0.75f * dir.x - .25f * Mathf.Abs(dir.y), 0.75f * dir.y + .25f * Mathf.Abs(dir.x));
+							gridNodeHolder.GridNodeIndicator = indicator;
+							indicator.SetValue(gridNodeHolder.Value);
+							setupIndicator = true;
+							break;
+						}
 					}
 				}
 			}
@@ -119,6 +125,11 @@ namespace GridSystem
 #endif
 
 		#endregion
+
+		public GridCell GetCell(Vector2Int coordinates)
+		{
+			return gridCells[coordinates.x, coordinates.y];
+		}
 
 		[System.Serializable]
 		public class GridCellArray

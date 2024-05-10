@@ -7,6 +7,7 @@ namespace GridSystem
 	{
 		[field: SerializeField, HideInInspector] public GridNode CurrentNode { get; set; }
 		public Shape CurrentShape { get; set; }
+		// [field: SerializeField, HideInInspector] public GridNodeIndicator CurrentIndicator { get; set; }
 
 		public bool IsShowingHighlight => highlight.gameObject.activeSelf;
 

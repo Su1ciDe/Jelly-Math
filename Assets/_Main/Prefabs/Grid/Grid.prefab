@@ -51,6 +51,7 @@ MonoBehaviour:
   cellPrefab: {fileID: 6665240572735651428, guid: 47d9d4b88a2914777971f2f8374fa0d6, type: 3}
   gridNodeHolderPrefab: {fileID: 5650290104544440795, guid: 2977ba2187c7f474e893dbd4161f889f, type: 3}
   gridNodePrefab: {fileID: 541696576476685130, guid: 13cdc952500b043b3915defe6f611595, type: 3}
+  gridNodeIndicatorPrefab: {fileID: 359857941964853113, guid: 26d7202d948af471894bd8c2ff9e5b08, type: 3}
   fillerPrefab: {fileID: 8315021414969620916, guid: 9c7765545d2ce4e43aea4fa5014426d2, type: 3}
   fillerDotPrefab: {fileID: 6991908600589848164, guid: e9836fcb6db0646d796c81674130e9c8, type: 3}
   gridCells:

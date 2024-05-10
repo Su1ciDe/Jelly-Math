@@ -45,6 +45,7 @@
     </ui:VisualElement>
     <ui:VisualElement name="OptionsVisualElement" style="height: 70px;">
         <ui:Label text="Options" display-tooltip-when-elided="true" name="lbl_Options" class="header" />
+        <ui:TextField picking-mode="Ignore" label="Level Time" name="txt_LevelTime" />
         <ui:VisualElement name="SaveVisualElement" style="flex-direction: row;">
             <ui:TextField picking-mode="Ignore" label="Level No" name="txt_LevelNo" style="width: 300px;" />
             <ui:Button text="Save" display-tooltip-when-elided="true" name="btn_Save" />

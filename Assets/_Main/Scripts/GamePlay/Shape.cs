@@ -23,6 +23,8 @@ namespace GamePlay
 		[SerializeField] [HideInInspector] private Vector3 startingPosition;
 		private readonly List<GridNodeHolder> touchingGridNodeHolders = new List<GridNodeHolder>();
 
+		private const float MOVE_DURATION = .35f;
+		
 		public static event UnityAction<Shape> OnPlace;
 
 		private void Awake()
@@ -92,9 +94,11 @@ namespace GamePlay
 				}
 			}
 
+			CanMove = false;
 			var pos = GetMiddlePointOfDetectedCells();
-			transform.DOMove(pos, .35f).SetEase(Ease.OutBack);
-			
+			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack).OnComplete(() => CanMove = true);
+			startingPosition = pos;
+
 			SetActiveDetectors(false);
 
 			OnPlace?.Invoke(this);
@@ -103,7 +107,7 @@ namespace GamePlay
 		public void ResetPosition()
 		{
 			CanMove = false;
-			transform.DOMove(startingPosition, .35f).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
+			transform.DOMove(startingPosition, MOVE_DURATION).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
 		}
 
 		public void ResetRotation()

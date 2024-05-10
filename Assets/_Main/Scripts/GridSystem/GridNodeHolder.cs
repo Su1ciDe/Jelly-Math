@@ -1,18 +1,16 @@
 using System.Collections.Generic;
 using GamePlay;
-using TMPro;
 using UnityEngine;
 
 namespace GridSystem
 {
 	public class GridNodeHolder : MonoBehaviour
 	{
-		public int Value { get; private set; }
+		[field: SerializeField, HideInInspector] public GridNodeIndicator GridNodeIndicator { get; set; }
+		[field: SerializeField, HideInInspector] public int Value { get; private set; }
 		public int CurrentValue { get; private set; }
 
-		[SerializeField] private TextMeshPro txtValue;
-
-		private List<GridNode> gridNodes = new List<GridNode>();
+		[SerializeField, HideInInspector] private List<GridNode> gridNodes = new List<GridNode>();
 		public List<GridNode> GridNodes => gridNodes;
 
 		public void Setup(int value)
@@ -33,7 +31,7 @@ namespace GridSystem
 		private void SetValue(int value)
 		{
 			CurrentValue = value;
-			txtValue.SetText(CurrentValue.ToString());
+			GridNodeIndicator.SetValue(CurrentValue);
 		}
 	}
 }

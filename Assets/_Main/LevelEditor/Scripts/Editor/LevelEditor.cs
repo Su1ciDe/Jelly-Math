@@ -11,6 +11,7 @@ using UnityEditor.UIElements;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Grid = GridSystem.Grid;
 using Object = UnityEngine.Object;
 
 namespace LevelEditor
@@ -155,7 +156,7 @@ namespace LevelEditor
 
 		#region Grid
 
-		private static Vector2Int cellCount = new Vector2Int(10, 10);
+		private static Vector2Int cellCount = Grid.Size;
 		private List<CellInfo[,]> gridCells = new List<CellInfo[,]>();
 
 		private void SetupGrid()

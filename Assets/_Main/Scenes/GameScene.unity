@@ -322,7 +322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: -21.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -745,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1838575207948563831, guid: c52545d7a90254be3bdab04cb0883bf9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25
+      value: -26.5
       objectReference: {fileID: 0}
     - target: {fileID: 1838575207948563831, guid: c52545d7a90254be3bdab04cb0883bf9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1006,7 +1006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1838575207948563831, guid: c52545d7a90254be3bdab04cb0883bf9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20
+      value: -21.5
       objectReference: {fileID: 0}
     - target: {fileID: 1838575207948563831, guid: c52545d7a90254be3bdab04cb0883bf9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1413,6 +1413,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6436254257835559752, guid: 9770d0c1174be4a6a9ed6b4d330859cf, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436254257835559752, guid: 9770d0c1174be4a6a9ed6b4d330859cf, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: NaN
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436254257835559752, guid: 9770d0c1174be4a6a9ed6b4d330859cf, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 7.173737e-34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436254257835559752, guid: 9770d0c1174be4a6a9ed6b4d330859cf, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 1e-45
+      objectReference: {fileID: 0}
     - target: {fileID: 6436254257835559753, guid: 9770d0c1174be4a6a9ed6b4d330859cf, type: 3}
       propertyPath: m_RootOrder
       value: 9
