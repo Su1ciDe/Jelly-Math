@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Fiber.Managers;
 using GamePlay;
 using LevelEditor;
 using UnityEditor;
@@ -9,6 +10,7 @@ namespace Managers
 	public class DeckManager : MonoBehaviour
 	{
 		public int CurrentDeckStage { get; set; }
+		public Deck CurrentDeck { get; set; }
 
 		[SerializeField] private Deck deckPrefab;
 		[SerializeField] private GameObject deckCellPrefab;
@@ -16,6 +18,24 @@ namespace Managers
 		[SerializeField] [HideInInspector] private List<Deck> stageDecks = new List<Deck>();
 
 		private const float SIZE = 1f;
+
+		private void OnEnable()
+		{
+			LevelManager.OnLevelStart += OnLevelStarted;
+		}
+
+		private void OnDisable()
+		{
+			LevelManager.OnLevelStart -= OnLevelStarted;
+		}
+
+		private void OnLevelStarted()
+		{
+			CurrentDeckStage = 0;
+			CurrentDeck = stageDecks[CurrentDeckStage];
+		}
+
+		#region Editor
 
 #if UNITY_EDITOR
 		public void SetupDecks(List<DeckCellInfo[,]> deckCellInfos, Dictionary<string, List<Vector2Int>> shapePairs)
@@ -85,5 +105,7 @@ namespace Managers
 			return origin;
 		}
 #endif
+
+		#endregion
 	}
 }

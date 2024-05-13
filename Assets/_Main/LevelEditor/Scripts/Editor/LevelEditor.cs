@@ -49,8 +49,9 @@ namespace LevelEditor
 		private VisualElement GridVisualElement;
 
 		// Options
-		private Button btn_Save;
+		private TextField txt_LevelTime;
 		private TextField txt_LevelNo;
+		private Button btn_Save;
 
 		#endregion
 
@@ -129,7 +130,7 @@ namespace LevelEditor
 
 			// Grid
 			listViewHolders = rootVisualElement.Q<ListView>(nameof(listViewHolders));
-			
+
 			ColorPicker = rootVisualElement.Q<ColorField>("the-color-field");
 			ColorPicker.value = Color.black;
 			ColorPicker.showAlpha = false;
@@ -141,6 +142,7 @@ namespace LevelEditor
 
 			GridVisualElement = rootVisualElement.Q<VisualElement>(nameof(GridVisualElement));
 
+			txt_LevelTime = rootVisualElement.Q<TextField>(nameof(txt_LevelTime));
 			txt_LevelNo = rootVisualElement.Q<TextField>(nameof(txt_LevelNo));
 			btn_Save = rootVisualElement.Q<Button>(nameof(btn_Save));
 			btn_Save.clickable.clicked += Save;
@@ -207,7 +209,7 @@ namespace LevelEditor
 		#endregion
 
 		#region Holders
-		
+
 		private void OnCellClicked(IMouseEvent e, CellInfo cell)
 		{
 			if (cell.Button is null) return;
@@ -747,6 +749,7 @@ namespace LevelEditor
 			//
 			levelBase.GridManager.SetupGrids(colorHolderPair, gridCells.Count);
 			levelBase.DeckManager.SetupDecks(deckCells, shapePairs);
+			levelBase.Timer = int.Parse(txt_LevelTime.value);
 			//
 
 			var levelPath = $"{LEVELS_PATH}Level_{levelNo:000}.prefab";
