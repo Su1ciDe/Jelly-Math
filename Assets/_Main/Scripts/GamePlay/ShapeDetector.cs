@@ -10,11 +10,16 @@ namespace GamePlay
 
 		public Vector2Int Coordinates => coordinates;
 		[SerializeField] private Vector2Int coordinates;
-
-		[SerializeField] private Collider col;
+		
+		private Collider col;
 
 		private GridCell currentNearestGridCell;
 		private readonly List<GridCell> triggeredCells = new List<GridCell>();
+
+		private void Awake()
+		{
+			col = GetComponent<Collider>();
+		}
 
 		private void OnTriggerEnter(Collider other)
 		{

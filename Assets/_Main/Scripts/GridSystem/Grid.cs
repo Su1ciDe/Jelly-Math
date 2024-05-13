@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Fiber.Utilities;
+using GamePlay;
 using LevelEditor;
+using Managers;
 using UnityEditor;
 using UnityEngine;
 using Utilities;
@@ -29,6 +31,47 @@ namespace GridSystem
 
 		[SerializeField, HideInInspector] private List<GridNodeHolder> gridNodeHolders = new List<GridNodeHolder>();
 		public List<GridNodeHolder> GridNodeHolders => gridNodeHolders;
+
+		private void OnEnable()
+		{
+			Shape.OnPlace += OnShapePlaced;
+		}
+
+		private void OnDisable()
+		{
+			Shape.OnPlace -= OnShapePlaced;
+		}
+
+		private void OnShapePlaced(Shape shape)
+		{
+			if (CheckGrid())
+			{
+				GridManager.Instance.CompleteStage();
+			}
+		}
+
+		public bool CheckGrid()
+		{
+			bool gridCompleted = false;
+			for (var i = 0; i < gridNodeHolders.Count; i++)
+			{
+				var gridNodeHolder = gridNodeHolders[i];
+				if (gridNodeHolder.CurrentValue.Equals(0))
+				{
+					gridCompleted = true;
+				}
+				else
+					return false;
+
+				for (int j = 0; j < gridNodeHolder.GridNodes.Count; j++)
+				{
+					if (!gridNodeHolder.GridNodes[i].GetCell().CurrentShape)
+						return false;
+				}
+			}
+
+			return gridCompleted;
+		}
 
 		#region Setup
 
@@ -109,7 +152,7 @@ namespace GridSystem
 						var newCoor = gridNode.Coordinates + Direction.Directions[i];
 						if (!GetCell(newCoor).CurrentNode)
 						{
-							var indicator = Instantiate(gridNodeIndicatorPrefab, gridNodeHolder.transform);
+							var indicator = (GridNodeIndicator)PrefabUtility.InstantiatePrefab(gridNodeIndicatorPrefab, gridNodeHolder.transform);
 							var adjacentCell = GetCell(newCoor);
 							var dir = (adjacentCell.transform.position - gridNode.transform.position).normalized;
 							indicator.transform.position = gridNode.transform.position + new Vector3(0.75f * dir.x - .25f * Mathf.Abs(dir.y), 0.75f * dir.y + .25f * Mathf.Abs(dir.x));

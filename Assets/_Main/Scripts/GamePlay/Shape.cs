@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using GridSystem;
+using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,11 +21,12 @@ namespace GamePlay
 		[Space]
 		[SerializeField] private TextMeshPro txtValue;
 
-		[SerializeField] [HideInInspector] private Vector3 startingPosition;
+		[SerializeField, HideInInspector] private Vector3 startingPosition;
+
 		private readonly List<GridNodeHolder> touchingGridNodeHolders = new List<GridNodeHolder>();
 
 		private const float MOVE_DURATION = .35f;
-		
+
 		public static event UnityAction<Shape> OnPlace;
 
 		private void Awake()
@@ -77,8 +79,6 @@ namespace GamePlay
 			{
 				ResetPosition();
 			}
-
-			ResetRotation();
 		}
 
 		private void Place()
@@ -92,27 +92,28 @@ namespace GamePlay
 					touchingGridNodeHolders.Add(holder);
 					holder.PlaceShape(this);
 				}
+
+				detectors[i].CurrentCell.CurrentShape = this;
 			}
 
 			CanMove = false;
 			var pos = GetMiddlePointOfDetectedCells();
-			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack).OnComplete(() => CanMove = true);
+			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack).OnComplete(() =>
+			{
+				CanMove = true;
+				OnPlace?.Invoke(this);
+			});
+
+			transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
 			startingPosition = pos;
 
 			SetActiveDetectors(false);
-
-			OnPlace?.Invoke(this);
 		}
 
 		public void ResetPosition()
 		{
 			CanMove = false;
 			transform.DOMove(startingPosition, MOVE_DURATION).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
-		}
-
-		public void ResetRotation()
-		{
-			// model.DORotateQuaternion(Quaternion.identity, .1f);
 		}
 
 		public bool CanBePlaced()

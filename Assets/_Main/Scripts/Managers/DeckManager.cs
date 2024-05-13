@@ -1,23 +1,31 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Fiber.Managers;
+using Fiber.Utilities;
 using GamePlay;
+using GamePlay.Player;
 using LevelEditor;
 using UnityEditor;
 using UnityEngine;
 
 namespace Managers
 {
-	public class DeckManager : MonoBehaviour
+	public class DeckManager : Singleton<DeckManager>
 	{
-		public int CurrentDeckStage { get; set; }
 		public Deck CurrentDeck { get; set; }
+		public int CurrentDeckStageIndex { get; set; } = 0;
 
 		[SerializeField] private Deck deckPrefab;
 		[SerializeField] private GameObject deckCellPrefab;
 
+		[Space]
+		[SerializeField] private Transform loadPoint;
+		[SerializeField] private Transform completePoint;
+
 		[SerializeField] [HideInInspector] private List<Deck> stageDecks = new List<Deck>();
 
 		private const float SIZE = 1f;
+		private const float MOVE_DURATION = .5F;
 
 		private void OnEnable()
 		{
@@ -31,8 +39,31 @@ namespace Managers
 
 		private void OnLevelStarted()
 		{
-			CurrentDeckStage = 0;
-			CurrentDeck = stageDecks[CurrentDeckStage];
+			LoadNewDeck();
+		}
+
+		private void LoadNewDeck()
+		{
+			Player.Instance.PlayerInputs.CanInput = false;
+
+			CurrentDeck = stageDecks[CurrentDeckStageIndex];
+			CurrentDeck.transform.position = loadPoint.position;
+			CurrentDeck.gameObject.SetActive(true);
+			CurrentDeck.transform.DOLocalMove(Vector3.zero, MOVE_DURATION).SetEase(Ease.OutQuart).OnComplete(() => Player.Instance.PlayerInputs.CanInput = true);
+		}
+
+		public void CompleteDeck()
+		{
+			var currentStage = CurrentDeck;
+			currentStage.transform.DOMove(completePoint.position, MOVE_DURATION).SetEase(Ease.OutQuart).OnComplete(() => Destroy(currentStage.gameObject));
+
+			// Next Stage
+			CurrentDeckStageIndex++;
+			// Spawn new deck if there is any
+			if (CurrentDeckStageIndex < stageDecks.Count)
+			{
+				LoadNewDeck();
+			}
 		}
 
 		#region Editor
@@ -100,9 +131,7 @@ namespace Managers
 					xBiggest = cell.x;
 			}
 
-			var origin = (new Vector3(xBiggest, yBiggest) + new Vector3(xSmallest, ySmallest)) / 2f;
-
-			return origin;
+			return (new Vector3(xBiggest, yBiggest) + new Vector3(xSmallest, ySmallest)) / 2f;
 		}
 #endif
 

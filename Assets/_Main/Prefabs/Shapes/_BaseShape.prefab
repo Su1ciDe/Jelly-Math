@@ -270,6 +270,7 @@ MonoBehaviour:
   model: {fileID: 7036649441213499536}
   detectors: []
   txtValue: {fileID: 2405538680416067297}
+  startingPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8208797234761911302
 GameObject:
   m_ObjectHideFlags: 0

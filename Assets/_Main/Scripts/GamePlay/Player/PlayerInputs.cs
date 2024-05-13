@@ -64,6 +64,7 @@ namespace GamePlay.Player
 
 					pack.transform.DOKill();
 					SelectedShape = pack;
+					SelectedShape.OnPickUp();
 
 					OnDown?.Invoke(hit.point);
 				}
@@ -119,7 +120,6 @@ namespace GamePlay.Player
 			if (SelectedShape)
 			{
 				SelectedShape.ResetPosition();
-				SelectedShape.ResetRotation();
 			}
 
 			CanInput = false;
@@ -130,7 +130,6 @@ namespace GamePlay.Player
 			if (SelectedShape)
 			{
 				SelectedShape.ResetPosition();
-				SelectedShape.ResetRotation();
 			}
 
 			CanInput = false;

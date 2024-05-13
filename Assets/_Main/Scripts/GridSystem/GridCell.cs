@@ -7,9 +7,9 @@ namespace GridSystem
 	{
 		[field: SerializeField, HideInInspector] public GridNode CurrentNode { get; set; }
 		public Shape CurrentShape { get; set; }
-		// [field: SerializeField, HideInInspector] public GridNodeIndicator CurrentIndicator { get; set; }
 
 		public bool IsShowingHighlight => highlight.gameObject.activeSelf;
+		public bool IsShowingNegativeHighlight => negativeHighlight.gameObject.activeSelf;
 
 		[field: SerializeField, HideInInspector] public Vector2Int Coordinates { get; private set; }
 		public int Index { get; private set; }
@@ -28,13 +28,11 @@ namespace GridSystem
 
 		public void ShowHighlight()
 		{
-			// if (IsShowingHighlight) return;
-
-			if (CurrentNode is not null && !CurrentShape)
+			if (CurrentNode is not null && !CurrentShape && !IsShowingHighlight)
 			{
 				highlight.gameObject.SetActive(true);
 			}
-			else
+			else if (!IsShowingNegativeHighlight)
 			{
 				negativeHighlight.gameObject.SetActive(true);
 			}
@@ -42,8 +40,8 @@ namespace GridSystem
 
 		public void HideHighlight()
 		{
-			negativeHighlight.gameObject.SetActive(false);
 			highlight.gameObject.SetActive(false);
+			negativeHighlight.gameObject.SetActive(false);
 		}
 	}
 }

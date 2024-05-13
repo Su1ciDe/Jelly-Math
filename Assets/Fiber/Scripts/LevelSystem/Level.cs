@@ -1,4 +1,5 @@
 using System.Collections;
+using Fiber.Managers;
 using Lean.Touch;
 using Managers;
 using TriInspector;
@@ -9,7 +10,7 @@ namespace Fiber.LevelSystem
 {
 	public class Level : MonoBehaviour
 	{
-		[field: SerializeField, HideInInspector] public int Timer { get; set; }
+		[field: SerializeField] public int Timer { get; set; }
 
 		[Title("Managers")]
 		[SerializeField] private DeckManager deckManager;
@@ -19,7 +20,32 @@ namespace Fiber.LevelSystem
 		public GridManager GridManager => gridManager;
 
 		private int currentTime;
+		private readonly WaitForSeconds waitForSecond = new WaitForSeconds(1);
+		private Coroutine timerCoroutine;
+
 		public static event UnityAction<int> OnTimerTick;
+
+		private void OnEnable()
+		{
+			LevelManager.OnLevelWin += OnLevelWon;
+			LevelManager.OnLevelLose += OnLevelLost;
+		}
+
+		private void OnDisable()
+		{
+			LevelManager.OnLevelWin -= OnLevelWon;
+			LevelManager.OnLevelLose -= OnLevelLost;
+		}
+
+		private void OnLevelWon()
+		{
+			StopCoroutine(timerCoroutine);
+		}
+
+		private void OnLevelLost()
+		{
+			StopCoroutine(timerCoroutine);
+		}
 
 		public virtual void Load()
 		{
@@ -40,22 +66,23 @@ namespace Fiber.LevelSystem
 
 		private void StartTimer()
 		{
-			StartCoroutine(TimerCoroutine());
+			timerCoroutine = StartCoroutine(TimerCoroutine());
 		}
 
 		private IEnumerator TimerCoroutine()
 		{
-			var wait = new WaitForSeconds(1);
-
 			currentTime = Timer;
-			OnTimerTick?.Invoke(currentTime);
-
 			while (currentTime > 0)
 			{
-				yield return wait;
+				yield return waitForSecond;
 
 				currentTime--;
 				OnTimerTick?.Invoke(currentTime);
+			}
+
+			if (currentTime <= 0)
+			{
+				LevelManager.Instance.Lose();
 			}
 		}
 	}

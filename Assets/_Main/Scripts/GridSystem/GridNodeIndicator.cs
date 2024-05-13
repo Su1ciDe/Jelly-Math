@@ -6,6 +6,9 @@ namespace GridSystem
 	public class GridNodeIndicator : MonoBehaviour
 	{
 		[SerializeField] private TextMeshPro txtValue;
+		[Space]
+		[SerializeField] private Color correctColor;
+		[SerializeField] private Color wrongColor;
 
 		private void Awake()
 		{
@@ -15,6 +18,10 @@ namespace GridSystem
 		public void SetValue(int value)
 		{
 			txtValue.SetText(value.ToString());
+			if (value.Equals(0))
+			{
+				txtValue.color = correctColor;
+			}
 		}
 	}
 }

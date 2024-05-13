@@ -91,7 +91,7 @@ namespace Fiber.Managers
 
 		private void LoadLevel(int index)
 		{
-			CurrentLevel = Instantiate(LevelNo <= TutorialLevels.Length ? TutorialLevels[index - 1] : Levels[index - 1]);
+			CurrentLevel = Instantiate(LevelNo <= TutorialLevels.Length ? TutorialLevels[index - 1] : Levels[index - 1],transform);
 			CurrentLevel.Load();
 			OnLevelLoad?.Invoke();
 

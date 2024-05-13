@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c818890a47204f62b1be0d7cd8f65256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <GridNodeIndicator>k__BackingField: {fileID: 0}
+  <Value>k__BackingField: 0
+  gridNodes: []

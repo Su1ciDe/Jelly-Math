@@ -1,4 +1,5 @@
 using Interfaces;
+using Managers;
 using UnityEngine;
 
 namespace GridSystem
@@ -17,6 +18,11 @@ namespace GridSystem
 		public void SetCoordinates(Vector2Int coor)
 		{
 			Coordinates = coor;
+		}
+
+		public GridCell GetCell()
+		{
+			return GridManager.Instance.CurrentGridStage.GetCell(Coordinates);
 		}
 	}
 }

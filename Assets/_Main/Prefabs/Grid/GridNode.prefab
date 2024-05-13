@@ -220,7 +220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Coordinates>k__BackingField: {x: 0, y: 0}
   <ParentHolder>k__BackingField: {fileID: 0}
-  txtValue: {fileID: 2786848720645444333}
 --- !u!1 &3244153068895033542
 GameObject:
   m_ObjectHideFlags: 0
