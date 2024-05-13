@@ -76,7 +76,7 @@ namespace GridSystem
 		#region Setup
 
 #if UNITY_EDITOR
-		public void SetupEditor(Dictionary<Color, GridNodeInfo> nodeHolderInfos)
+		public void SetupEditor(GridNodeInfo nodeHolderInfo)
 		{
 			gridCells = new GridCellMatrix(Size.x, Size.y);
 
@@ -94,25 +94,22 @@ namespace GridSystem
 				}
 			}
 
-			foreach (var nodeHolderInfo in nodeHolderInfos)
+			var holder = (GridNodeHolder)PrefabUtility.InstantiatePrefab(gridNodeHolderPrefab, transform);
+			holder.Setup(nodeHolderInfo.Value);
+
+			for (var i = 0; i < nodeHolderInfo.Cells.Count; i++)
 			{
-				var holder = (GridNodeHolder)PrefabUtility.InstantiatePrefab(gridNodeHolderPrefab, transform);
-				holder.Setup(nodeHolderInfo.Value.Value);
+				var cellInfo = nodeHolderInfo.Cells[i];
+				var node = (GridNode)PrefabUtility.InstantiatePrefab(gridNodePrefab, holder.transform);
+				var cell = gridCells[cellInfo.Coordinates.x, cellInfo.Coordinates.y];
+				node.transform.position = cell.transform.position;
+				node.Setup(holder, cellInfo.Coordinates);
+				cell.CurrentNode = node;
 
-				for (var i = 0; i < nodeHolderInfo.Value.Cells.Count; i++)
-				{
-					var cellInfo = nodeHolderInfo.Value.Cells[i];
-					var node = (GridNode)PrefabUtility.InstantiatePrefab(gridNodePrefab, holder.transform);
-					var cell = gridCells[cellInfo.Coordinates.x, cellInfo.Coordinates.y];
-					node.transform.position = cell.transform.position;
-					node.Setup(holder, cellInfo.Coordinates);
-					cell.CurrentNode = node;
-
-					holder.GridNodes.Add(node);
-				}
-
-				gridNodeHolders.Add(holder);
+				holder.GridNodes.Add(node);
 			}
+
+			gridNodeHolders.Add(holder);
 
 			foreach (var gridNodeHolder in gridNodeHolders)
 			{

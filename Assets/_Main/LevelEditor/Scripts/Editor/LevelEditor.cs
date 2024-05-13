@@ -199,7 +199,7 @@ namespace LevelEditor
 					int i1 = tabIndex;
 					int x1 = x;
 					int y1 = y;
-					button.RegisterCallback<MouseDownEvent>(e => OnCellClicked(e, gridCells[i1][x1, y1]), TrickleDown.TrickleDown);
+					button.RegisterCallback<MouseDownEvent>(e => OnCellClicked(e, gridCells[i1][x1, y1], i1), TrickleDown.TrickleDown);
 
 					row.Add(button);
 				}
@@ -210,13 +210,13 @@ namespace LevelEditor
 
 		#region Holders
 
-		private void OnCellClicked(IMouseEvent e, CellInfo cell)
+		private void OnCellClicked(IMouseEvent e, CellInfo cell, int tabIndex)
 		{
 			if (cell.Button is null) return;
 
 			if (e.button.Equals(0))
 			{
-				OnColorAdded(selectedColor, cell);
+				OnColorAdded(selectedColor, cell, tabIndex);
 			}
 			else if (e.button.Equals(1))
 			{
@@ -224,7 +224,7 @@ namespace LevelEditor
 			}
 		}
 
-		private void OnColorAdded(Color color, CellInfo cell)
+		private void OnColorAdded(Color color, CellInfo cell, int tabIndex)
 		{
 			if (cell.Button.style.backgroundColor.Equals(selectedColor)) return;
 
@@ -239,7 +239,7 @@ namespace LevelEditor
 			}
 			else
 			{
-				colorHolderPair.Add(color, new GridNodeInfo(cell));
+				colorHolderPair.Add(color, new GridNodeInfo(cell, tabIndex));
 				AddColorHolderPair(color);
 			}
 		}
@@ -490,13 +490,13 @@ namespace LevelEditor
 
 		private void SetupDeckGrid()
 		{
-			hasDeckSetup = true;
-
 			deckCells = new List<DeckCellInfo[,]>();
 			for (int i = 0; i < deckTabs.Count; i++)
 			{
 				AddDeckGrid(i);
 			}
+
+			hasDeckSetup = true;
 		}
 
 		private void AddDeckGrid(int tabIndex)
@@ -517,19 +517,14 @@ namespace LevelEditor
 					deckCells[tabIndex][x, y] = new DeckCellInfo();
 					var button = EditorUtilities.CreateVisualElement<Button>("cell");
 					button.focusable = false;
-					int i1 = tabIndex;
+					int _tabIndex = tabIndex;
 					int x1 = x;
 					int y1 = y;
-					/* button.clickable.clicked += () =>
-					 {
-					     cells[i1][x1][y1] = selectedCellType;
-					     button.style.backgroundColor = cellTypeColorPair[selectedCellType];
-					 };*/
 
-					button.RegisterCallback<PointerDownEvent>(e => Delete(e.clickCount, i1, x1, y1), TrickleDown.TrickleDown);
-					button.RegisterCallback<MouseDownEvent>(e => OnClickedDeckGrid(e, i1, x1, y1), TrickleDown.TrickleDown);
-					button.RegisterCallback<MouseEnterEvent>(e => Recolor(i1, x1, y1));
-					button.RegisterCallback<MouseLeaveEvent>(e => ClearShape(i1));
+					button.RegisterCallback<PointerDownEvent>(e => Delete(e.clickCount, _tabIndex, x1, y1), TrickleDown.TrickleDown);
+					button.RegisterCallback<MouseDownEvent>(e => OnClickedDeckGrid(e, _tabIndex, x1, y1), TrickleDown.TrickleDown);
+					button.RegisterCallback<MouseEnterEvent>(e => Recolor(_tabIndex, x1, y1));
+					button.RegisterCallback<MouseLeaveEvent>(e => ClearShape(_tabIndex));
 
 					row.Add(button);
 				}
@@ -589,7 +584,6 @@ namespace LevelEditor
 					deckTabs[tabIndex].VisualElement.ElementAt(y1).ElementAt(x1).style.backgroundColor = color;
 					var btn = (Button)deckTabs[tabIndex].VisualElement.ElementAt(y1).ElementAt(x1);
 					btn.text = txt_ShapeValue.value;
-					// deckCells[tabIndex][x1, y1].type = CellType.Filled;
 					deckCells[tabIndex][x1, y1].Shape = selectedShape;
 					deckCells[tabIndex][x1, y1].Id = id;
 					deckCells[tabIndex][x1, y1].Direction = direction;
@@ -653,21 +647,6 @@ namespace LevelEditor
 					}
 				}
 			}
-			// else
-			// {
-			// if (selectedCellType != CellType.Empty)
-			// {
-			// 	if (cells[tabIndex][x, y].type == CellType.Empty)
-			// 	{
-			// 		tabs[tabIndex].Grid.ElementAt(y).ElementAt(x).style.backgroundColor = cellTypeColorPair[selectedCellType];
-			// 	}
-			// 	else
-			// 	{
-			// 		if (cells[tabIndex][x, y].type == CellType.Empty)
-			// 			tabs[tabIndex].Grid.ElementAt(y).ElementAt(x).style.backgroundColor = Color.red;
-			// 	}
-			// }
-			// }
 		}
 
 		private void Delete(int clickCount, int tabIndex, int x, int y)
@@ -749,7 +728,8 @@ namespace LevelEditor
 			//
 			levelBase.GridManager.SetupGrids(colorHolderPair, gridCells.Count);
 			levelBase.DeckManager.SetupDecks(deckCells, shapePairs);
-			levelBase.Timer = int.Parse(txt_LevelTime.value);
+			if (!txt_LevelTime.value.Equals(""))
+				levelBase.Timer = int.Parse(txt_LevelTime.value);
 			//
 
 			var levelPath = $"{LEVELS_PATH}Level_{levelNo:000}.prefab";

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Fiber.Managers;
 using Fiber.Utilities;
@@ -66,11 +67,11 @@ namespace Managers
 #if UNITY_EDITOR
 		public void SetupGrids(Dictionary<Color, GridNodeInfo> nodeHolderInfos, int stageCount)
 		{
+			var nodeInfos = nodeHolderInfos.OrderBy(x => x.Value.TabIndex).Select(x => x.Value).ToArray();
 			for (int i = 0; i < stageCount; i++)
 			{
 				var grid = (Grid)PrefabUtility.InstantiatePrefab(gridPrefab, transform);
-				grid.SetupEditor(nodeHolderInfos);
-
+				grid.SetupEditor(nodeInfos[i]);
 				grid.gameObject.SetActive(false);
 
 				stageGrids.Add(grid);

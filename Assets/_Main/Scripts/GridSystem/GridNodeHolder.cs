@@ -7,7 +7,7 @@ namespace GridSystem
 	public class GridNodeHolder : MonoBehaviour
 	{
 		[field: SerializeField, HideInInspector] public GridNodeIndicator GridNodeIndicator { get; set; }
-		[field: SerializeField, HideInInspector] public int Value { get; private set; }
+		[field: SerializeField] public int Value { get; private set; }
 		public int CurrentValue { get; private set; }
 
 		[SerializeField, HideInInspector] private List<GridNode> gridNodes = new List<GridNode>();

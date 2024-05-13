@@ -22,7 +22,7 @@ namespace Managers
 		[SerializeField] private Transform loadPoint;
 		[SerializeField] private Transform completePoint;
 
-		[SerializeField] [HideInInspector] private List<Deck> stageDecks = new List<Deck>();
+		[SerializeField, HideInInspector] private List<Deck> stageDecks = new List<Deck>();
 
 		private const float SIZE = 1f;
 		private const float MOVE_DURATION = .5F;

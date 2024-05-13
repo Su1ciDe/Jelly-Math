@@ -7,11 +7,13 @@ namespace LevelEditor
 	{
 		public int Value;
 		public List<CellInfo> Cells = new List<CellInfo>();
+		public int TabIndex;
 		public IntegerField IntegerField;
 
-		public GridNodeInfo(CellInfo cell)
+		public GridNodeInfo(CellInfo cell, int tabIndex)
 		{
 			Cells.Add(cell);
+			TabIndex = tabIndex;
 		}
 	}
 }

@@ -31,8 +31,8 @@
         <ui:VisualElement name="DeckSectionVisualElement" class="bordered-box" style="flex-grow: 1;">
             <ui:Label text="Deck" display-tooltip-when-elided="true" name="lbl_Deck" tabindex="-1" class="header" />
             <ui:VisualElement name="SetupVisualElement" style="flex-grow: 1; min-height: 30px; flex-direction: row;">
-                <ui:TextField picking-mode="Ignore" label="x" value="1" text="1" name="txt_DeckX" style="width: 200px;" />
-                <ui:TextField picking-mode="Ignore" label="y" value="1" text="1" name="txt_DeckY" style="width: 200px;" />
+                <ui:TextField picking-mode="Ignore" label="X" value="1" text="1" name="txt_DeckX" style="width: 200px;" />
+                <ui:TextField picking-mode="Ignore" label="Y" value="1" text="1" name="txt_DeckY" style="width: 200px;" />
                 <ui:Button text="Setup" display-tooltip-when-elided="true" name="btn_DeckSetup" />
             </ui:VisualElement>
             <ui:TextField picking-mode="Ignore" label="Shape Value:" value="1" text="1" name="txt_ShapeValue" style="flex-grow: 1;" />
@@ -43,7 +43,7 @@
             <ui:VisualElement name="DeckVisualElement" style="flex-grow: 1; margin-top: 8px; margin-right: 3px; margin-left: 3px; width: 100%; flex-basis: 100%; align-items: flex-start; position: relative; left: auto;" />
         </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="OptionsVisualElement" style="height: 70px;">
+    <ui:VisualElement name="OptionsVisualElement" class="bordered-box" style="height: 75px; max-height: 75px; flex-shrink: 0;">
         <ui:Label text="Options" display-tooltip-when-elided="true" name="lbl_Options" class="header" />
         <ui:TextField picking-mode="Ignore" label="Level Time" name="txt_LevelTime" />
         <ui:VisualElement name="SaveVisualElement" style="flex-direction: row;">
