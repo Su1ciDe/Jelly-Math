@@ -49,6 +49,8 @@ namespace Fiber.LevelSystem
 
 		public virtual void Load()
 		{
+			currentTime = Timer;
+			
 			gameObject.SetActive(true);
 		}
 
@@ -61,7 +63,10 @@ namespace Fiber.LevelSystem
 		{
 			LeanTouch.OnFingerDown -= OnFirstTouch;
 
-			StartTimer();
+			if (!Timer.Equals(0))
+			{
+				StartTimer();
+			}
 		}
 
 		private void StartTimer()
@@ -71,7 +76,6 @@ namespace Fiber.LevelSystem
 
 		private IEnumerator TimerCoroutine()
 		{
-			currentTime = Timer;
 			while (currentTime > 0)
 			{
 				yield return waitForSecond;

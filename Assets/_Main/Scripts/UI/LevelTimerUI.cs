@@ -1,6 +1,6 @@
 using DG.Tweening;
-using Fiber.LevelSystem;
 using Fiber.Managers;
+using Fiber.LevelSystem;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,26 +14,47 @@ namespace UI
 
 		private const float TIMER_ANIM_DURATION = .25f;
 
+		private void Awake()
+		{
+			LevelManager.OnLevelStart += OnLevelStarted;
+		}
+
 		private void Start()
 		{
-			OnTimerTick(LevelManager.Instance.CurrentLevel.Timer);
+			SetupTimer();
 		}
 
 		private void OnEnable()
 		{
-			LevelManager.OnLevelStart += OnLevelStarted;
 			Level.OnTimerTick += OnTimerTick;
 		}
 
 		private void OnDisable()
 		{
-			LevelManager.OnLevelStart -= OnLevelStarted;
 			Level.OnTimerTick -= OnTimerTick;
+		}
+
+		private void OnDestroy()
+		{
+			LevelManager.OnLevelStart -= OnLevelStarted;
 		}
 
 		private void OnLevelStarted()
 		{
-			OnTimerTick(LevelManager.Instance.CurrentLevel.Timer);
+			SetupTimer();
+		}
+
+		private void SetupTimer()
+		{
+			if (!LevelManager.Instance.CurrentLevel.Timer.Equals(0))
+			{
+				gameObject.SetActive(true);
+				OnTimerTick(LevelManager.Instance.CurrentLevel.Timer);
+			}
+			else
+			{
+				gameObject.SetActive(false);
+			}
 		}
 
 		private void OnTimerTick(int time)

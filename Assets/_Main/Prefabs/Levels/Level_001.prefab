@@ -6082,7 +6082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: <Timer>k__BackingField
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3565937133529419270, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageGrids.Array.size
