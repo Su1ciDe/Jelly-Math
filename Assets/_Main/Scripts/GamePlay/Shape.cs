@@ -16,10 +16,11 @@ namespace GamePlay
 	{
 		public bool IsInGrid { get; set; }
 		public bool IsInDeck { get; set; } = true;
-
-		[field: SerializeField] public int Value { get; private set; }
 		public bool CanMove { get; set; } = true;
 
+		[field: SerializeField] public int Value { get; private set; }
+
+		[Space]
 		[SerializeField] private Transform model;
 		public ShapeDetector[] Detectors => detectors;
 		[SerializeField] private ShapeDetector[] detectors;
