@@ -106,8 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 1, z: 0}
-  rotationDamping: 5
-  rotationClamp: 75
+  moveDamping: 15
   inputLayerMask:
     serializedVersion: 2
     m_Bits: 256

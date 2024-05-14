@@ -1828,7 +1828,7 @@ PrefabInstance:
       objectReference: {fileID: 5098449528847398959}
     - target: {fileID: 3930341068101061373, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_Name
-      value: _BaseLevel
+      value: Level_001
       objectReference: {fileID: 0}
     - target: {fileID: 4820665473506977118, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageDecks.Array.size
@@ -1848,7 +1848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5772685810015609396, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5772685810015609396, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_LocalPosition.z

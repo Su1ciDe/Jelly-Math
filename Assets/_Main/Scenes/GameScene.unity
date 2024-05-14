@@ -343,7 +343,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.097385645, y: 2.0628623e-25, z: 2.0185262e-26, w: 0.99524677}
+  m_LocalRotation: {x: -0.097385645, y: 2.0682764e-25, z: 2.0238237e-26, w: 0.99524677}
   m_LocalPosition: {x: 0, y: -5.24, z: -15.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -960,11 +960,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1838575207948563831, guid: c52545d7a90254be3bdab04cb0883bf9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 2.0628623e-25
+      value: 2.0682764e-25
       objectReference: {fileID: 0}
     - target: {fileID: 1838575207948563831, guid: c52545d7a90254be3bdab04cb0883bf9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 2.0185262e-26
+      value: 2.0238237e-26
       objectReference: {fileID: 0}
     - target: {fileID: 1838575207948563831, guid: c52545d7a90254be3bdab04cb0883bf9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1103,10 +1103,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 559746569, guid: 11c77b4f611fa7345ac287c4515df73f, type: 3}
-      propertyPath: moveDamping
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1773956614702648634, guid: 11c77b4f611fa7345ac287c4515df73f, type: 3}
       propertyPath: m_Name
       value: Player
