@@ -18,10 +18,7 @@ namespace GridSystem
 		public void SetValue(int value)
 		{
 			txtValue.SetText(value.ToString());
-			if (value.Equals(0))
-			{
-				txtValue.color = correctColor;
-			}
+			txtValue.color = value.Equals(0) ? correctColor : wrongColor;
 		}
 	}
 }
