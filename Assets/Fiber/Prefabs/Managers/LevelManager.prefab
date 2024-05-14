@@ -47,4 +47,8 @@ MonoBehaviour:
   randomizeAfterRotation: 0
   Levels:
   - {fileID: 4110224175749906539, guid: 0611e46c43b1b41eaae391f57f3a93c8, type: 3}
+  - {fileID: 7396828896914113197, guid: fc597a255d44d8d4c820746737bb928e, type: 3}
+  - {fileID: 2784920126593502289, guid: af62d3260af50fa41af4f89823b5a9e3, type: 3}
+  - {fileID: 2313007560908982, guid: 39aa0aa8106e10444b4fd39762f2d3df, type: 3}
+  - {fileID: 7044130179835330785, guid: dbba678263f8b4c3c988b35e8bc114a8, type: 3}
   TutorialLevels: []
