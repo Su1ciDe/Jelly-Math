@@ -85,7 +85,7 @@ namespace GamePlay
 				if (detectors[i].CurrentCell)
 				{
 					detectors[i].CurrentCell.HideHighlight();
-					detectors[i].CurrentCell = null;
+					// detectors[i].CurrentCell = null;
 				}
 			}
 		}
@@ -116,7 +116,7 @@ namespace GamePlay
 			transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
 			startingPosition = pos;
 
-			SetActiveDetectors(false);
+			// SetActiveDetectors(false);
 		}
 
 		public void ResetPosition()
@@ -179,7 +179,15 @@ namespace GamePlay
 		public void SetActiveDetectors(bool active)
 		{
 			for (int i = 0; i < detectors.Length; i++)
+			{
+				if (detectors[i].CurrentCell)
+				{
+					detectors[i].CurrentCell.CurrentShape = null;
+					detectors[i].CurrentCell = null;
+				}
+
 				detectors[i].SetActiveDetector(active);
+			}
 		}
 	}
 }
