@@ -9277,6 +9277,10 @@ PrefabInstance:
       propertyPath: startingPosition.y
       value: -10
       objectReference: {fileID: 0}
+    - target: {fileID: 2868661751461239356, guid: d2a5e11a87d7540eeac85eb1848d279b, type: 3}
+      propertyPath: <Value>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4174917972263645643, guid: d2a5e11a87d7540eeac85eb1848d279b, type: 3}
       propertyPath: m_Name
       value: Shape_O_Big
