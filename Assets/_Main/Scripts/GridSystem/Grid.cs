@@ -76,7 +76,7 @@ namespace GridSystem
 		#region Setup
 
 #if UNITY_EDITOR
-		public void SetupEditor(GridNodeInfo nodeHolderInfo)
+		public void SetupEditor(List<GridNodeInfo> nodeHolderInfo)
 		{
 			gridCells = new GridCellMatrix(Size.x, Size.y);
 
@@ -94,22 +94,25 @@ namespace GridSystem
 				}
 			}
 
-			var holder = (GridNodeHolder)PrefabUtility.InstantiatePrefab(gridNodeHolderPrefab, transform);
-			holder.Setup(nodeHolderInfo.Value);
-
-			for (var i = 0; i < nodeHolderInfo.Cells.Count; i++)
+			foreach (var gridNodeInfo in nodeHolderInfo)
 			{
-				var cellInfo = nodeHolderInfo.Cells[i];
-				var node = (GridNode)PrefabUtility.InstantiatePrefab(gridNodePrefab, holder.transform);
-				var cell = gridCells[cellInfo.Coordinates.x, cellInfo.Coordinates.y];
-				node.transform.position = cell.transform.position;
-				node.Setup(holder, cellInfo.Coordinates);
-				cell.CurrentNode = node;
+				var holder = (GridNodeHolder)PrefabUtility.InstantiatePrefab(gridNodeHolderPrefab, transform);
+				holder.Setup(gridNodeInfo.Value);
 
-				holder.GridNodes.Add(node);
+				for (var i = 0; i < gridNodeInfo.Cells.Count; i++)
+				{
+					var cellInfo = gridNodeInfo.Cells[i];
+					var node = (GridNode)PrefabUtility.InstantiatePrefab(gridNodePrefab, holder.transform);
+					var cell = gridCells[cellInfo.Coordinates.x, cellInfo.Coordinates.y];
+					node.transform.position = cell.transform.position;
+					node.Setup(holder, cellInfo.Coordinates);
+					cell.CurrentNode = node;
+
+					holder.GridNodes.Add(node);
+				}
+
+				gridNodeHolders.Add(holder);
 			}
-
-			gridNodeHolders.Add(holder);
 
 			foreach (var gridNodeHolder in gridNodeHolders)
 			{
@@ -144,20 +147,20 @@ namespace GridSystem
 
 					// Indicator
 					if (setupIndicator) continue;
-					for (int i = 0; i < Direction.Directions.Length; i++)
+					foreach (var dir in Direction.Directions)
 					{
-						var newCoor = gridNode.Coordinates + Direction.Directions[i];
-						if (!GetCell(newCoor).CurrentNode)
-						{
-							var indicator = (GridNodeIndicator)PrefabUtility.InstantiatePrefab(gridNodeIndicatorPrefab, gridNodeHolder.transform);
-							var adjacentCell = GetCell(newCoor);
-							var dir = (adjacentCell.transform.position - gridNode.transform.position).normalized;
-							indicator.transform.position = gridNode.transform.position + new Vector3(0.75f * dir.x - .25f * Mathf.Abs(dir.y), 0.75f * dir.y + .25f * Mathf.Abs(dir.x));
-							gridNodeHolder.GridNodeIndicator = indicator;
-							indicator.SetValue(gridNodeHolder.Value);
-							setupIndicator = true;
-							break;
-						}
+						var newCoor = gridNode.Coordinates + dir;
+						
+						if (GetCell(newCoor).CurrentNode) continue;
+						
+						var indicator = (GridNodeIndicator)PrefabUtility.InstantiatePrefab(gridNodeIndicatorPrefab, gridNodeHolder.transform);
+						var adjacentCell = GetCell(newCoor);
+						var direction = (adjacentCell.transform.position - gridNode.transform.position).normalized;
+						indicator.transform.position = gridNode.transform.position + new Vector3(0.75f * direction.x - .25f * Mathf.Abs(direction.y), 0.75f * direction.y + .25f * Mathf.Abs(direction.x));
+						gridNodeHolder.GridNodeIndicator = indicator;
+						indicator.SetValue(gridNodeHolder.Value);
+						setupIndicator = true;
+						break;
 					}
 				}
 			}

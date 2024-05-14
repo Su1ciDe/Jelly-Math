@@ -13,6 +13,11 @@ namespace GridSystem
 		[SerializeField, HideInInspector] private List<GridNode> gridNodes = new List<GridNode>();
 		public List<GridNode> GridNodes => gridNodes;
 
+		private void Awake()
+		{
+			CurrentValue = Value;
+		}
+
 		public void Setup(int value)
 		{
 			Value = value;

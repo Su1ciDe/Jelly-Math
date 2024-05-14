@@ -163,12 +163,6 @@ namespace LevelEditor
 
 		private void SetupGrid()
 		{
-			// size window
-			// const float margin = 10;
-			// var sizeX = (cellCount.x + 1) * (CELL_SIZE + margin);
-			// var sizeY = (cellCount.y + 1) * (CELL_SIZE + margin);
-			// window.minSize = new Vector2(sizeX + sizeX * 50 / 100f, sizeY + sizeY * 30 / 100f);
-
 			gridCells = new List<CellInfo[,]>();
 			for (int i = 0; i < gridTabs.Count; i++)
 			{

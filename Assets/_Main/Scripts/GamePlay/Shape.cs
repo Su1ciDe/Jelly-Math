@@ -12,7 +12,7 @@ namespace GamePlay
 	[SelectionBase]
 	public class Shape : MonoBehaviour
 	{
-		public int Value { get; private set; }
+		[field: SerializeField] public int Value { get; private set; }
 		public bool CanMove { get; set; } = true;
 
 		[SerializeField] private Transform model;
@@ -31,6 +31,7 @@ namespace GamePlay
 
 		private void Awake()
 		{
+			SetValue(Value);
 			txtValue.transform.up = Vector3.up;
 		}
 
@@ -40,10 +41,9 @@ namespace GamePlay
 			startingPosition = transform.position;
 		}
 
-		public void Move(Vector3 movePosition, float moveDamping, Quaternion rotateTo, float rotationDamping)
+		public void Move(Vector3 movePosition, float moveDamping)
 		{
 			transform.position = Vector3.Lerp(transform.position, movePosition, Time.deltaTime * moveDamping);
-			// model.rotation = Quaternion.Lerp(model.rotation, rotateTo, Time.deltaTime * rotationDamping);
 
 			for (int i = 0; i < detectors.Length; i++)
 			{
@@ -78,6 +78,15 @@ namespace GamePlay
 			else
 			{
 				ResetPosition();
+			}
+
+			for (var i = 0; i < detectors.Length; i++)
+			{
+				if (detectors[i].CurrentCell)
+				{
+					detectors[i].CurrentCell.HideHighlight();
+					detectors[i].CurrentCell = null;
+				}
 			}
 		}
 

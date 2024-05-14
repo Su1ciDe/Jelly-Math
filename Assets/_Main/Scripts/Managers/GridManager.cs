@@ -67,15 +67,33 @@ namespace Managers
 #if UNITY_EDITOR
 		public void SetupGrids(Dictionary<Color, GridNodeInfo> nodeHolderInfos, int stageCount)
 		{
-			var nodeInfos = nodeHolderInfos.OrderBy(x => x.Value.TabIndex).Select(x => x.Value).ToArray();
-			for (int i = 0; i < stageCount; i++)
+			// var nodeInfos = nodeHolderInfos.OrderBy(x => x.Value.TabIndex);
+			var nodeInfosByIndex = new Dictionary<int, List<GridNodeInfo>>();
+			foreach (var nodeInfo in nodeHolderInfos)
+			{
+				if (!nodeInfosByIndex.ContainsKey(nodeInfo.Value.TabIndex))
+					nodeInfosByIndex.Add(nodeInfo.Value.TabIndex, new List<GridNodeInfo>());
+
+				nodeInfosByIndex[nodeInfo.Value.TabIndex].Add(nodeInfo.Value);
+			}
+
+			foreach (var gridNodeInfo in nodeInfosByIndex)
 			{
 				var grid = (Grid)PrefabUtility.InstantiatePrefab(gridPrefab, transform);
-				grid.SetupEditor(nodeInfos[i]);
+				grid.SetupEditor(gridNodeInfo.Value);
 				grid.gameObject.SetActive(false);
 
 				stageGrids.Add(grid);
 			}
+
+			// for (int i = 0; i < stageCount; i++)
+			// {
+			// 	var grid = (Grid)PrefabUtility.InstantiatePrefab(gridPrefab, transform);
+			// 	grid.SetupEditor(nodeInfos[i]);
+			// 	grid.gameObject.SetActive(false);
+			//
+			// 	stageGrids.Add(grid);
+			// }
 		}
 #endif
 	}
