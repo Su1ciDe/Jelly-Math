@@ -2,6 +2,7 @@ using System.Collections;
 using System.Linq;
 using Fiber.Utilities;
 using Fiber.LevelSystem;
+using Lofelt.NiceVibrations;
 using TriInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -143,6 +144,7 @@ namespace Fiber.Managers
 		{
 			if (StateManager.Instance.CurrentState != GameState.OnStart) return;
 
+			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.Failure);
 			OnLevelLose?.Invoke();
 		}
 

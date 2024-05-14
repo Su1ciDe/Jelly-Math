@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Fiber.Managers;
 using GridSystem;
+using Lofelt.NiceVibrations;
 using Managers;
 using TMPro;
 using UnityEngine;
@@ -58,6 +60,9 @@ namespace GamePlay
 
 		public void OnPickUp()
 		{
+			HapticManager.Instance.PlayHaptic(0.5f, 0.5f);
+			// AudioManager.Instance.PlayAudio(AudioName.Pickup);
+			
 			SetActiveDetectors(true);
 			if (touchingGridNodeHolders.Count > 0)
 			{
@@ -77,6 +82,8 @@ namespace GamePlay
 			}
 			else
 			{
+				HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.Warning);
+				
 				ResetPosition();
 			}
 
@@ -115,6 +122,8 @@ namespace GamePlay
 
 			transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
 
+			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.RigidImpact);
+			
 			IsInGrid = true;
 			IsInDeck = false;
 		}

@@ -1,6 +1,7 @@
 using System.Collections;
 using Fiber.Managers;
 using Lean.Touch;
+using Lofelt.NiceVibrations;
 using Managers;
 using TriInspector;
 using UnityEngine;

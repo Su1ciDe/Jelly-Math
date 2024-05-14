@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using DG.Tweening;
 using Fiber.Managers;
 using Fiber.Utilities;
 using LevelEditor;
+using Lofelt.NiceVibrations;
 using UnityEditor;
 using UnityEngine;
 using Grid = GridSystem.Grid;
@@ -51,6 +51,8 @@ namespace Managers
 		{
 			var currentStage = CurrentGridStage;
 
+			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.Success);
+			
 			// Next Stage
 			CurrentGridStageIndex++;
 			if (CurrentGridStageIndex < stageGrids.Count)
@@ -67,7 +69,6 @@ namespace Managers
 #if UNITY_EDITOR
 		public void SetupGrids(Dictionary<Color, GridNodeInfo> nodeHolderInfos, int stageCount)
 		{
-			// var nodeInfos = nodeHolderInfos.OrderBy(x => x.Value.TabIndex);
 			var nodeInfosByIndex = new Dictionary<int, List<GridNodeInfo>>();
 			foreach (var nodeInfo in nodeHolderInfos)
 			{
@@ -85,15 +86,6 @@ namespace Managers
 
 				stageGrids.Add(grid);
 			}
-
-			// for (int i = 0; i < stageCount; i++)
-			// {
-			// 	var grid = (Grid)PrefabUtility.InstantiatePrefab(gridPrefab, transform);
-			// 	grid.SetupEditor(nodeInfos[i]);
-			// 	grid.gameObject.SetActive(false);
-			//
-			// 	stageGrids.Add(grid);
-			// }
 		}
 #endif
 	}

@@ -57,9 +57,6 @@ namespace GamePlay.Player
 			{
 				if (hit.rigidbody && hit.rigidbody.TryGetComponent(out Shape pack) && pack.CanMove)
 				{
-					HapticManager.Instance.PlayHaptic(0.5f, 0.5f);
-					// AudioManager.Instance.PlayAudio(AudioName.Pickup);
-
 					pack.transform.DOKill();
 					SelectedShape = pack;
 					SelectedShape.OnPickUp();
