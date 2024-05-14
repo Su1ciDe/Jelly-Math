@@ -1252,7 +1252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2171944396568542195, guid: 57581fc643bb5469a94e5ed25d7eeedd, type: 3}
       propertyPath: Levels.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2171944396568542195, guid: 57581fc643bb5469a94e5ed25d7eeedd, type: 3}
       propertyPath: Levels.Array.data[0]
@@ -1261,7 +1261,19 @@ PrefabInstance:
     - target: {fileID: 2171944396568542195, guid: 57581fc643bb5469a94e5ed25d7eeedd, type: 3}
       propertyPath: Levels.Array.data[1]
       value: 
-      objectReference: {fileID: 583159771997552353, guid: 5dda03d3591944ed5ad686da506275d2, type: 3}
+      objectReference: {fileID: 7041271838556621014, guid: 5dda03d3591944ed5ad686da506275d2, type: 3}
+    - target: {fileID: 2171944396568542195, guid: 57581fc643bb5469a94e5ed25d7eeedd, type: 3}
+      propertyPath: Levels.Array.data[2]
+      value: 
+      objectReference: {fileID: 2032187826707376787, guid: dbba678263f8b4c3c988b35e8bc114a8, type: 3}
+    - target: {fileID: 2171944396568542195, guid: 57581fc643bb5469a94e5ed25d7eeedd, type: 3}
+      propertyPath: Levels.Array.data[3]
+      value: 
+      objectReference: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+    - target: {fileID: 2171944396568542195, guid: 57581fc643bb5469a94e5ed25d7eeedd, type: 3}
+      propertyPath: randomizeAfterRotation
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57581fc643bb5469a94e5ed25d7eeedd, type: 3}
 --- !u!1001 &2274542124166377177
@@ -1450,6 +1462,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 559746569, guid: 11c77b4f611fa7345ac287c4515df73f, type: 3}
+      propertyPath: moveDamping
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1773956614702648634, guid: 11c77b4f611fa7345ac287c4515df73f, type: 3}
       propertyPath: m_Name
       value: Player

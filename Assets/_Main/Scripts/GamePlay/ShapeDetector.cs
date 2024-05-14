@@ -6,7 +6,7 @@ namespace GamePlay
 {
 	public class ShapeDetector : MonoBehaviour
 	{
-		public GridCell CurrentCell { get; private set; }
+		public GridCell CurrentCell { get; set; }
 
 		public Vector2Int Coordinates => coordinates;
 		[SerializeField] private Vector2Int coordinates;
@@ -40,6 +40,8 @@ namespace GamePlay
 				{
 					triggeredCells.Remove(cell);
 					cell.HideHighlight();
+					if (cell.Equals(CurrentCell))
+						CurrentCell = null;
 				}
 			}
 		}
@@ -62,11 +64,10 @@ namespace GamePlay
 			CurrentCell = nearestCell;
 			return nearestCell;
 		}
-
-
+		
 		public void SetActiveDetector(bool active)
 		{
-			col.enabled = active;
+			// col.enabled = active;
 		}
 	}
 }
