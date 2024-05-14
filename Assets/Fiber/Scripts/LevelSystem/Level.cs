@@ -39,18 +39,20 @@ namespace Fiber.LevelSystem
 
 		private void OnLevelWon()
 		{
-			StopCoroutine(timerCoroutine);
+			if (timerCoroutine is not null)
+				StopCoroutine(timerCoroutine);
 		}
 
 		private void OnLevelLost()
 		{
-			StopCoroutine(timerCoroutine);
+			if (timerCoroutine is not null)
+				StopCoroutine(timerCoroutine);
 		}
 
 		public virtual void Load()
 		{
 			currentTime = Timer;
-			
+
 			gameObject.SetActive(true);
 		}
 

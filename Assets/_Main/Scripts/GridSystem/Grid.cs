@@ -65,7 +65,7 @@ namespace GridSystem
 
 				for (int j = 0; j < gridNodeHolder.GridNodes.Count; j++)
 				{
-					if (!gridNodeHolder.GridNodes[i].GetCell().CurrentShape)
+					if (!gridNodeHolder.GridNodes[j].GetCell().CurrentShape)
 						return false;
 				}
 			}
@@ -150,13 +150,14 @@ namespace GridSystem
 					foreach (var dir in Direction.Directions)
 					{
 						var newCoor = gridNode.Coordinates + dir;
-						
+
 						if (GetCell(newCoor).CurrentNode) continue;
-						
+
 						var indicator = (GridNodeIndicator)PrefabUtility.InstantiatePrefab(gridNodeIndicatorPrefab, gridNodeHolder.transform);
 						var adjacentCell = GetCell(newCoor);
 						var direction = (adjacentCell.transform.position - gridNode.transform.position).normalized;
-						indicator.transform.position = gridNode.transform.position + new Vector3(0.75f * direction.x - .25f * Mathf.Abs(direction.y), 0.75f * direction.y + .25f * Mathf.Abs(direction.x));
+						indicator.transform.position =
+							gridNode.transform.position + new Vector3(0.75f * direction.x - .25f * Mathf.Abs(direction.y), 0.75f * direction.y + .25f * Mathf.Abs(direction.x));
 						gridNodeHolder.GridNodeIndicator = indicator;
 						indicator.SetValue(gridNodeHolder.Value);
 						setupIndicator = true;
