@@ -11,7 +11,7 @@ namespace GridSystem
 {
 	public class Grid : Singleton<Grid>
 	{
-		public static Vector2Int Size = new Vector2Int(6, 6);
+		public static Vector2Int Size = new Vector2Int(8, 8);
 
 		[SerializeField] private Vector2 nodeSize = new Vector2(1, 1);
 		[SerializeField] private float xSpacing = .1f;
