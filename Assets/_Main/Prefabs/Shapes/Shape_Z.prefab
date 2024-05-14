@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -5913113855316545935, guid: b3963d17eb6e4c6409d48b8b4ae29830, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b2d45805ebb94447e847146464031087, type: 2}
     - target: {fileID: 919132149155446097, guid: b3963d17eb6e4c6409d48b8b4ae29830, type: 3}
       propertyPath: m_Name
       value: SK_CubeS
@@ -357,6 +361,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shape_Z
       objectReference: {fileID: 0}
+    - target: {fileID: 8790302724416191132, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
+      propertyPath: detectors.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8790302724416191132, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
+      propertyPath: detectors.Array.data[0]
+      value: 
+      objectReference: {fileID: 629985386}
+    - target: {fileID: 8790302724416191132, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
+      propertyPath: detectors.Array.data[1]
+      value: 
+      objectReference: {fileID: 64149975}
+    - target: {fileID: 8790302724416191132, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
+      propertyPath: detectors.Array.data[2]
+      value: 
+      objectReference: {fileID: 1298300228}
+    - target: {fileID: 8790302724416191132, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
+      propertyPath: detectors.Array.data[3]
+      value: 
+      objectReference: {fileID: 2032408530}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
 --- !u!4 &330800806965967561 stripped

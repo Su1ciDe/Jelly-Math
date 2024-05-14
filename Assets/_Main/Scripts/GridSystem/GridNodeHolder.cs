@@ -35,11 +35,9 @@ namespace GridSystem
 			for (var i = 0; i < gridNodes.Count; i++)
 			{
 				var currentShape = gridNodes[i].GetCell().CurrentShape;
-				if (!currentShape ) continue;
+				if (!currentShape) continue;
 				if (currentShape.Equals(shape))
-				{
 					gridNodes[i].GetCell().CurrentShape = null;
-				}
 			}
 		}
 
