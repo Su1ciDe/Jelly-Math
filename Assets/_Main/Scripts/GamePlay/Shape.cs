@@ -62,7 +62,7 @@ namespace GamePlay
 		{
 			HapticManager.Instance.PlayHaptic(0.5f, 0.5f);
 			// AudioManager.Instance.PlayAudio(AudioName.Pickup);
-			
+
 			SetActiveDetectors(true);
 			if (touchingGridNodeHolders.Count > 0)
 			{
@@ -83,7 +83,7 @@ namespace GamePlay
 			else
 			{
 				HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.Warning);
-				
+
 				ResetPosition();
 			}
 
@@ -120,16 +120,20 @@ namespace GamePlay
 				OnPlace?.Invoke(this);
 			});
 
-			transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
+			if (!transform.IsChildOf(GridManager.Instance.CurrentGridStage.transform))
+				transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
 
 			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.RigidImpact);
-			
+
 			IsInGrid = true;
 			IsInDeck = false;
 		}
 
 		public void ResetPosition()
 		{
+			IsInGrid = false;
+			IsInDeck = true;
+
 			CanMove = false;
 			transform.DOMove(startingPosition, MOVE_DURATION).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
 		}
