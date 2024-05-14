@@ -13,6 +13,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Grid = GridSystem.Grid;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace LevelEditor
 {
@@ -42,6 +43,7 @@ namespace LevelEditor
 		private ListView listViewHolders;
 
 		private ColorField ColorPicker;
+		private Button btn_RandomColor;
 
 		private VisualElement TabsRowVisualElement;
 		private Button btn_AddTab;
@@ -130,11 +132,16 @@ namespace LevelEditor
 
 			// Grid
 			listViewHolders = rootVisualElement.Q<ListView>(nameof(listViewHolders));
-
 			ColorPicker = rootVisualElement.Q<ColorField>("the-color-field");
 			ColorPicker.value = Color.black;
 			ColorPicker.showAlpha = false;
 			ColorPicker.RegisterValueChangedCallback(evt => selectedColor = evt.newValue);
+			btn_RandomColor = rootVisualElement.Q<Button>(nameof(btn_RandomColor));
+			btn_RandomColor.clickable.clicked += () =>
+			{
+				var color = Random.ColorHSV();
+				ColorPicker.value = color;
+			};
 
 			TabsRowVisualElement = rootVisualElement.Q<VisualElement>(nameof(TabsRowVisualElement));
 			btn_AddTab = rootVisualElement.Q<Button>(nameof(btn_AddTab));

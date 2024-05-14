@@ -15,6 +15,7 @@
             <ui:VisualElement name="SetupVisualElement" style="flex-grow: 1; min-height: 30px; flex-direction: row;">
                 <ui:Label text="Select Color: " display-tooltip-when-elided="true" enable-rich-text="false" />
                 <ui:Instance template="ColorPicker" name="ColorPicker" style="flex-grow: 1;" />
+                <ui:Button text="Random Color" display-tooltip-when-elided="true" name="btn_RandomColor" style="height: 30px;" />
             </ui:VisualElement>
             <ui:VisualElement name="TabsVisualElement" style="flex-grow: 1; flex-direction: row; min-width: 30px; min-height: auto;">
                 <ui:VisualElement name="TabsRowVisualElement" style="flex-direction: row; flex-grow: 1;" />
