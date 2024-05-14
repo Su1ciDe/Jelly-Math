@@ -12,6 +12,9 @@ namespace GamePlay
 	[SelectionBase]
 	public class Shape : MonoBehaviour
 	{
+		public bool IsInGrid { get; set; }
+		public bool IsInDeck { get; set; } = true;
+
 		[field: SerializeField] public int Value { get; private set; }
 		public bool CanMove { get; set; } = true;
 
@@ -56,18 +59,20 @@ namespace GamePlay
 		public void OnPickUp()
 		{
 			SetActiveDetectors(true);
+			if (touchingGridNodeHolders.Count > 0)
+			{
+				for (var i = 0; i < touchingGridNodeHolders.Count; i++)
+					touchingGridNodeHolders[i].RemoveShape(this);
+
+				touchingGridNodeHolders.Clear();
+			}
 		}
 
 		public void OnRelease()
 		{
-			if (touchingGridNodeHolders.Count > 0)
+			if (!IsInGrid)
 			{
-				for (var i = 0; i < touchingGridNodeHolders.Count; i++)
-				{
-					touchingGridNodeHolders[i].RemoveShape(this);
-				}
-
-				touchingGridNodeHolders.Clear();
+				
 			}
 
 			var canBePlaced = CanBePlaced();
@@ -85,7 +90,7 @@ namespace GamePlay
 				if (detectors[i].CurrentCell)
 				{
 					detectors[i].CurrentCell.HideHighlight();
-					// detectors[i].CurrentCell = null;
+					detectors[i].CurrentCell = null;
 				}
 			}
 		}
@@ -114,9 +119,9 @@ namespace GamePlay
 			});
 
 			transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
-			startingPosition = pos;
 
-			// SetActiveDetectors(false);
+			IsInGrid = true;
+			IsInDeck = false;
 		}
 
 		public void ResetPosition()
@@ -180,12 +185,6 @@ namespace GamePlay
 		{
 			for (int i = 0; i < detectors.Length; i++)
 			{
-				if (detectors[i].CurrentCell)
-				{
-					detectors[i].CurrentCell.CurrentShape = null;
-					detectors[i].CurrentCell = null;
-				}
-
 				detectors[i].SetActiveDetector(active);
 			}
 		}

@@ -337,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7476728192955994475, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_Name
-      value: _BaseShape
+      value: Shape_I_Small
       objectReference: {fileID: 0}
     - target: {fileID: 8790302724416191132, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: detectors.Array.size
