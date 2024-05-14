@@ -70,11 +70,6 @@ namespace GamePlay
 
 		public void OnRelease()
 		{
-			if (!IsInGrid)
-			{
-				
-			}
-
 			var canBePlaced = CanBePlaced();
 			if (canBePlaced)
 			{

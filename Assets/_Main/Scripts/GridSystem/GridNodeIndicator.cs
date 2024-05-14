@@ -13,6 +13,7 @@ namespace GridSystem
 		private void Awake()
 		{
 			txtValue.transform.up = Vector3.up;
+			txtValue.color = Color.white;
 		}
 
 		public void SetValue(int value)
