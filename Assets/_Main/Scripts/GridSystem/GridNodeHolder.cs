@@ -31,8 +31,16 @@ namespace GridSystem
 		public void RemoveShape(Shape shape)
 		{
 			SetValue(CurrentValue + shape.Value);
+
 			for (var i = 0; i < gridNodes.Count; i++)
-				gridNodes[i].GetCell().CurrentShape = null;
+			{
+				var currentShape = gridNodes[i].GetCell().CurrentShape;
+				if (!currentShape ) continue;
+				if (currentShape.Equals(shape))
+				{
+					gridNodes[i].GetCell().CurrentShape = null;
+				}
+			}
 		}
 
 		private void SetValue(int value)

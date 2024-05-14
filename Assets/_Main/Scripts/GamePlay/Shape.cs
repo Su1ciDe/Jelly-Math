@@ -120,7 +120,8 @@ namespace GamePlay
 				OnPlace?.Invoke(this);
 			});
 
-			transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
+			if (!transform.IsChildOf(GridManager.Instance.CurrentGridStage.transform))
+				transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
 
 			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.RigidImpact);
 
