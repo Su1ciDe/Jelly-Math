@@ -132,6 +132,12 @@ namespace GamePlay
 				var detector = detectors[i];
 				if (!detector.CurrentCell) return false;
 				if (detector.CurrentCell.CurrentNode is null || detector.CurrentCell.CurrentShape) return false;
+
+				for (int j = 0; j < detectors.Length; j++)
+				{
+					if (i.Equals(j)) continue;
+					if (detectors[j].CurrentCell.Equals(detector.CurrentCell)) return false;
+				}
 			}
 
 			return true;
@@ -181,6 +187,8 @@ namespace GamePlay
 			for (int i = 0; i < detectors.Length; i++)
 			{
 				detectors[i].SetActiveDetector(active);
+				if (detectors[i].CurrentCell)
+					detectors[i].CurrentCell.CurrentShape = null;
 			}
 		}
 	}
