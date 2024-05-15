@@ -16,7 +16,7 @@ namespace GridSystem
 		private void Awake()
 		{
 			CurrentValue = Value;
-			SetValue(CurrentValue);
+			SetValue(CurrentValue, false);
 		}
 
 		public void Setup(int value)
@@ -42,10 +42,10 @@ namespace GridSystem
 			}
 		}
 
-		private void SetValue(int value)
+		private void SetValue(int value, bool showWrong = true)
 		{
 			CurrentValue = value;
-			GridNodeIndicator.SetValue(CurrentValue);
+			GridNodeIndicator.SetValue(CurrentValue, showWrong);
 		}
 	}
 }

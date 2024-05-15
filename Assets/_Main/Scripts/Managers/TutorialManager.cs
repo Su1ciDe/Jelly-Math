@@ -4,7 +4,6 @@ using Fiber.Utilities;
 using GamePlay;
 using UI;
 using UnityEngine;
-using Grid = GridSystem.Grid;
 
 namespace Managers
 {
