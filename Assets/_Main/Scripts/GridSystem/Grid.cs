@@ -163,7 +163,7 @@ namespace GridSystem
 						indicator.transform.position =
 							gridNode.transform.position + new Vector3(0.75f * direction.x - .25f * Mathf.Abs(direction.y), 0.75f * direction.y + .25f * Mathf.Abs(direction.x));
 						gridNodeHolder.GridNodeIndicator = indicator;
-						indicator.SetValue(gridNodeHolder.Value);
+						indicator.SetValue(gridNodeHolder.Value, false);
 						setupIndicator = true;
 						break;
 					}
