@@ -160,8 +160,8 @@ namespace GamePlay
 		private Vector3 GetMiddlePointOfDetectedCells()
 		{
 			var biggestAndLower = GetBiggestAndLower();
-			var origin = (Grid.Instance.GridCells[biggestAndLower.xBiggest, biggestAndLower.yBiggest].transform.position +
-			              Grid.Instance.GridCells[biggestAndLower.xSmallest, biggestAndLower.ySmallest].transform.position) / 2f;
+			var origin = (GridManager.Instance.CurrentGridStage.GridCells[biggestAndLower.xBiggest, biggestAndLower.yBiggest].transform.position +
+			              GridManager.Instance.CurrentGridStage.GridCells[biggestAndLower.xSmallest, biggestAndLower.ySmallest].transform.position) / 2f;
 
 			return origin;
 		}
