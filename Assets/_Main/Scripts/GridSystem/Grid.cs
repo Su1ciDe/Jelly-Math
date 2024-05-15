@@ -5,11 +5,12 @@ using LevelEditor;
 using Managers;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using Utilities;
 
 namespace GridSystem
 {
-	public class Grid : Singleton<Grid>
+	public class Grid : MonoBehaviour
 	{
 		public static Vector2Int Size = new Vector2Int(8, 8);
 
@@ -31,6 +32,8 @@ namespace GridSystem
 
 		[SerializeField, HideInInspector] private List<GridNodeHolder> gridNodeHolders = new List<GridNodeHolder>();
 		public List<GridNodeHolder> GridNodeHolders => gridNodeHolders;
+
+		public static UnityAction OnGridComplete;
 
 		private void OnEnable()
 		{
@@ -70,6 +73,7 @@ namespace GridSystem
 				}
 			}
 
+			OnGridComplete?.Invoke();
 			return gridCompleted;
 		}
 

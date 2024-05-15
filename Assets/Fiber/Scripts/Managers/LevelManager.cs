@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using Fiber.AudioSystem;
 using Fiber.Utilities;
 using Fiber.LevelSystem;
 using Lofelt.NiceVibrations;
@@ -92,7 +93,7 @@ namespace Fiber.Managers
 
 		private void LoadLevel(int index)
 		{
-			CurrentLevel = Instantiate(LevelNo <= TutorialLevels.Length ? TutorialLevels[index - 1] : Levels[index - 1],transform);
+			CurrentLevel = Instantiate(LevelNo <= TutorialLevels.Length ? TutorialLevels[index - 1] : Levels[index - 1], transform);
 			CurrentLevel.Load();
 			OnLevelLoad?.Invoke();
 
@@ -137,6 +138,8 @@ namespace Fiber.Managers
 		{
 			if (StateManager.Instance.CurrentState != GameState.OnStart) return;
 
+			AudioManager.Instance.PlayAudio(AudioName.Win);
+
 			OnLevelWin?.Invoke();
 		}
 
@@ -145,6 +148,8 @@ namespace Fiber.Managers
 			if (StateManager.Instance.CurrentState != GameState.OnStart) return;
 
 			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.Failure);
+			AudioManager.Instance.PlayAudio(AudioName.Lose);
+
 			OnLevelLose?.Invoke();
 		}
 

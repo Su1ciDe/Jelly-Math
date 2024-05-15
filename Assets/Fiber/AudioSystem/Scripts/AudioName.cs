@@ -8,5 +8,7 @@ namespace Fiber.AudioSystem
 	public enum AudioName
 	{
 		None = -1,
+		Win,
+		Lose
 	}
 }

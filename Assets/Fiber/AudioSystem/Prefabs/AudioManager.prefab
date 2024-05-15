@@ -47,16 +47,16 @@ MonoBehaviour:
   minPlayingAudioAtATime: 25
   maxPlayingAudioAtATime: 50
   tracks:
-  - Name: SFX
-    AudioSourcePrefab: {fileID: 152900401002307180, guid: 865d8dcca00124b79918d00446dc074a, type: 3}
+  - AudioSourcePrefab: {fileID: 152900401002307180, guid: 865d8dcca00124b79918d00446dc074a, type: 3}
     ActiveAudioSource: {fileID: 0}
     CanPlayOver: 1
     Audios:
       _serializedList:
-      - Key: -1
-        Value: {fileID: 0}
-  - Name: Music
-    AudioSourcePrefab: {fileID: 5458974145386491207, guid: 9e1ed01cef9ce4a008f7d16af7973136, type: 3}
+      - Key: 0
+        Value: {fileID: 8300000, guid: 1e75a205e65ae4c758c8a70a3eb90510, type: 3}
+      - Key: 1
+        Value: {fileID: 8300000, guid: dd3fbaa15052c4cb89906dc9ba313c60, type: 3}
+  - AudioSourcePrefab: {fileID: 5458974145386491207, guid: 9e1ed01cef9ce4a008f7d16af7973136, type: 3}
     ActiveAudioSource: {fileID: 0}
     CanPlayOver: 0
     Audios:

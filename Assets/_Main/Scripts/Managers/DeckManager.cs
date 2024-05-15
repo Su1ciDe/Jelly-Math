@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Fiber.Managers;
@@ -7,6 +9,8 @@ using GamePlay.Player;
 using LevelEditor;
 using UnityEditor;
 using UnityEngine;
+using Utilities;
+using Grid = GridSystem.Grid;
 
 namespace Managers
 {
@@ -54,16 +58,29 @@ namespace Managers
 
 		public void CompleteDeck()
 		{
+			completeDeckCoroutine ??= StartCoroutine(CompleteDeckCoroutine());
+		}
+
+		private Coroutine completeDeckCoroutine;
+
+		private IEnumerator CompleteDeckCoroutine()
+		{
+			yield return null;
+			yield return new WaitUntilAction(ref Grid.OnGridComplete);
+
 			var currentStage = CurrentDeck;
 			currentStage.transform.DOMove(completePoint.position, MOVE_DURATION).SetEase(Ease.OutQuart).OnComplete(() => Destroy(currentStage.gameObject));
 
 			// Next Stage
 			CurrentDeckStageIndex++;
+
 			// Spawn new deck if there is any
 			if (CurrentDeckStageIndex < stageDecks.Count)
 			{
 				LoadNewDeck();
 			}
+
+			completeDeckCoroutine = null;
 		}
 
 		#region Editor

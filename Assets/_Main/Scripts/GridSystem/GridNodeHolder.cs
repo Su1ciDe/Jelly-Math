@@ -16,6 +16,7 @@ namespace GridSystem
 		private void Awake()
 		{
 			CurrentValue = Value;
+			SetValue(CurrentValue);
 		}
 
 		public void Setup(int value)
