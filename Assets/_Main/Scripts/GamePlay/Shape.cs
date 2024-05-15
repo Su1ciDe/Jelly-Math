@@ -31,7 +31,7 @@ namespace GamePlay
 
 		private readonly List<GridNodeHolder> touchingGridNodeHolders = new List<GridNodeHolder>();
 
-		private const float MOVE_DURATION = .35f;
+		private const float MOVE_DURATION = .25f;
 
 		public static event UnityAction<Shape> OnPlace;
 
@@ -115,7 +115,7 @@ namespace GamePlay
 
 			CanMove = false;
 			var pos = GetMiddlePointOfDetectedCells();
-			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack).OnComplete(() =>
+			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack, 3f).OnComplete(() =>
 			{
 				CanMove = true;
 				OnPlace?.Invoke(this);
