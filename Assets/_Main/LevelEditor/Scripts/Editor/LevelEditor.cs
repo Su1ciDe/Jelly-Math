@@ -683,8 +683,8 @@ namespace LevelEditor
 		{
 			return direction switch
 			{
-				Directions.Up => x - -selectedShape.Detectors[i].Coordinates.y,
-				Directions.Right => x - -selectedShape.Detectors[i].Coordinates.x,
+				Directions.Up => x + selectedShape.Detectors[i].Coordinates.y,
+				Directions.Right => x + selectedShape.Detectors[i].Coordinates.x,
 				Directions.Left => x - selectedShape.Detectors[i].Coordinates.x,
 				Directions.Down => x - selectedShape.Detectors[i].Coordinates.y,
 				_ => throw new ArgumentOutOfRangeException()
@@ -695,9 +695,9 @@ namespace LevelEditor
 		{
 			return direction switch
 			{
-				Directions.Up => y - -selectedShape.Detectors[i].Coordinates.x,
-				Directions.Right => y - -selectedShape.Detectors[i].Coordinates.y,
-				Directions.Left => y - -selectedShape.Detectors[i].Coordinates.y,
+				Directions.Up => y + selectedShape.Detectors[i].Coordinates.x,
+				Directions.Right => y - selectedShape.Detectors[i].Coordinates.y,
+				Directions.Left => y + selectedShape.Detectors[i].Coordinates.y,
 				Directions.Down => y - selectedShape.Detectors[i].Coordinates.x,
 				_ => throw new ArgumentOutOfRangeException()
 			};
