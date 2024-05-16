@@ -9,6 +9,9 @@ namespace Fiber.AudioSystem
 	{
 		None = -1,
 		Win,
-		Lose
+		Lose,
+		Pickup,
+		Place,
+		
 	}
 }

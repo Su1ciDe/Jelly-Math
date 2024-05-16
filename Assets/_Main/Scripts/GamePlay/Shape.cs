@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Fiber.AudioSystem;
 using Fiber.Managers;
 using GridSystem;
 using Lofelt.NiceVibrations;
@@ -62,7 +63,7 @@ namespace GamePlay
 		public void OnPickUp()
 		{
 			HapticManager.Instance.PlayHaptic(0.5f, 0.5f);
-			// AudioManager.Instance.PlayAudio(AudioName.Pickup);
+			 AudioManager.Instance.PlayAudio(AudioName.Pickup);
 
 			SetActiveDetectors(true);
 			if (touchingGridNodeHolders.Count > 0)
@@ -125,6 +126,7 @@ namespace GamePlay
 				transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
 
 			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.RigidImpact);
+			AudioManager.Instance.PlayAudio(AudioName.Place);
 
 			IsInGrid = true;
 			IsInDeck = false;
