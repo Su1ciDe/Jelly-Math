@@ -63,7 +63,7 @@ namespace GamePlay
 		public void OnPickUp()
 		{
 			HapticManager.Instance.PlayHaptic(0.5f, 0.5f);
-			 AudioManager.Instance.PlayAudio(AudioName.Pickup);
+			AudioManager.Instance.PlayAudio(AudioName.Pickup);
 
 			SetActiveDetectors(true);
 			if (touchingGridNodeHolders.Count > 0)
@@ -121,6 +121,7 @@ namespace GamePlay
 				CanMove = true;
 				OnPlace?.Invoke(this);
 			});
+			model.DOScale(new Vector3(1.1f, 1.1f, 1), MOVE_DURATION).SetEase(Ease.Linear);
 
 			if (!transform.IsChildOf(GridManager.Instance.CurrentGridStage.transform))
 				transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
@@ -139,6 +140,7 @@ namespace GamePlay
 
 			CanMove = false;
 			transform.DOMove(startingPosition, MOVE_DURATION).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
+			model.DOScale(Vector3.one, MOVE_DURATION).SetEase(Ease.Linear);
 		}
 
 		public bool CanBePlaced()
