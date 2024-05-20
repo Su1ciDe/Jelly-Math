@@ -104,7 +104,7 @@ namespace Managers
 						// Deck Cells
 						var cell = (GameObject)PrefabUtility.InstantiatePrefab(deckCellPrefab, deck.transform);
 						cell.gameObject.name = x + " - " + y;
-						cell.transform.localPosition = new Vector3(x * (SIZE) - xOffset, -y * (SIZE) + yOffset);
+						cell.transform.localPosition = new Vector3(x * SIZE - xOffset, -y * SIZE + yOffset);
 
 						// Shapes
 						var info = deckCells[x, y];

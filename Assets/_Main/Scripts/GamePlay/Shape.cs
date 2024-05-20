@@ -8,7 +8,6 @@ using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using Grid = GridSystem.Grid;
 
 namespace GamePlay
 {
@@ -32,6 +31,7 @@ namespace GamePlay
 
 		private readonly List<GridNodeHolder> touchingGridNodeHolders = new List<GridNodeHolder>();
 
+		private static readonly int color = Shader.PropertyToID("_Color");
 		private const float MOVE_DURATION = .25f;
 
 		public static event UnityAction<Shape> OnPlace;
@@ -40,6 +40,8 @@ namespace GamePlay
 		{
 			SetValue(Value);
 			txtValue.transform.up = Vector3.up;
+
+			GetComponentInChildren<MeshRenderer>().material.SetColor(color, LevelManager.Instance.CurrentLevel.ShapeColor);
 		}
 
 		public void Setup(int value)
@@ -116,7 +118,7 @@ namespace GamePlay
 
 			CanMove = false;
 			var pos = GetMiddlePointOfDetectedCells();
-			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack, 3f).OnComplete(() =>
+			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack, 2).OnComplete(() =>
 			{
 				CanMove = true;
 				OnPlace?.Invoke(this);
