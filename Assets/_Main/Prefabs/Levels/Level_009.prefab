@@ -4580,19 +4580,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7022493802687427027, guid: d881d607d6fb04072abea7a12e687979, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d881d607d6fb04072abea7a12e687979, type: 3}
---- !u!114 &2580054168512153492 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3540112697027884204, guid: d881d607d6fb04072abea7a12e687979, type: 3}
-  m_PrefabInstance: {fileID: 1364362149406487352}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2155c162dc4830896008c6a152f336, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1460054755246032159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4935,7 +4928,7 @@ PrefabInstance:
     - target: {fileID: 854562399988840488, guid: adeccc0ccfb8c41fcb78927bc8f3ce50, type: 3}
       propertyPath: <ShapesInDeck>k__BackingField.Array.data[2]
       value: 
-      objectReference: {fileID: 2297610827005760366}
+      objectReference: {fileID: 0}
     - target: {fileID: 854562399988840488, guid: adeccc0ccfb8c41fcb78927bc8f3ce50, type: 3}
       propertyPath: <ShapesInDeck>k__BackingField.Array.data[3]
       value: 
@@ -4943,11 +4936,11 @@ PrefabInstance:
     - target: {fileID: 854562399988840488, guid: adeccc0ccfb8c41fcb78927bc8f3ce50, type: 3}
       propertyPath: <ShapesInDeck>k__BackingField.Array.data[4]
       value: 
-      objectReference: {fileID: 2580054168512153492}
+      objectReference: {fileID: 0}
     - target: {fileID: 854562399988840488, guid: adeccc0ccfb8c41fcb78927bc8f3ce50, type: 3}
       propertyPath: <ShapesInDeck>k__BackingField.Array.data[5]
       value: 
-      objectReference: {fileID: 2876580778877414265}
+      objectReference: {fileID: 0}
     - target: {fileID: 854562399988840489, guid: adeccc0ccfb8c41fcb78927bc8f3ce50, type: 3}
       propertyPath: m_Name
       value: Deck
@@ -5165,19 +5158,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7022493802687427027, guid: d881d607d6fb04072abea7a12e687979, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d881d607d6fb04072abea7a12e687979, type: 3}
---- !u!114 &2876580778877414265 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3540112697027884204, guid: d881d607d6fb04072abea7a12e687979, type: 3}
-  m_PrefabInstance: {fileID: 1642313338237362133}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2155c162dc4830896008c6a152f336, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1754156428503076282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7157,19 +7143,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7022493802687427027, guid: d881d607d6fb04072abea7a12e687979, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d881d607d6fb04072abea7a12e687979, type: 3}
---- !u!114 &2297610827005760366 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3540112697027884204, guid: d881d607d6fb04072abea7a12e687979, type: 3}
-  m_PrefabInstance: {fileID: 3369749574682372034}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2155c162dc4830896008c6a152f336, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &3505755483776020666
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10817,6 +10796,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.b
+      value: 0.17707278
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.g
+      value: 2.1138067
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.r
+      value: 1.966936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.b
+      value: 0.6431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.g
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.r
+      value: 0.23921569
+      objectReference: {fileID: 0}
     - target: {fileID: 3565937133529419270, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageGrids.Array.size
       value: 1
@@ -10827,7 +10830,7 @@ PrefabInstance:
       objectReference: {fileID: 5997121349569844411}
     - target: {fileID: 3930341068101061373, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_Name
-      value: _BaseLevel
+      value: Level_009
       objectReference: {fileID: 0}
     - target: {fileID: 4820665473506977118, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageDecks.Array.size
