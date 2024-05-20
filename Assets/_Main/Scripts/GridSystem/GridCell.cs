@@ -28,6 +28,10 @@ namespace GridSystem
 
 		public void ShowHighlight()
 		{
+			if (CurrentNode)
+			{
+				CurrentNode.ShowHighlight();
+			}
 			// if (CurrentNode is not null && !CurrentShape && !IsShowingHighlight)
 			// {
 			// 	highlight.gameObject.SetActive(true);
@@ -40,6 +44,10 @@ namespace GridSystem
 
 		public void HideHighlight()
 		{
+			if (CurrentNode)
+			{
+				CurrentNode.HideHighlight();
+			}
 			// highlight.gameObject.SetActive(false);
 			// negativeHighlight.gameObject.SetActive(false);
 		}
