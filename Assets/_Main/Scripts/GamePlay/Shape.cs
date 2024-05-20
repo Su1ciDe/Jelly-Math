@@ -41,7 +41,7 @@ namespace GamePlay
 			SetValue(Value);
 			txtValue.transform.up = Vector3.up;
 
-			GetComponentInChildren<MeshRenderer>().material.SetColor(color, LevelManager.Instance.CurrentLevel.ShapeColor);
+			GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor(color, LevelManager.Instance.CurrentLevel.ShapeColor);
 		}
 
 		public void Setup(int value)
