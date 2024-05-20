@@ -189,18 +189,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4615f7f156e498c43b75293e08744174, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4615f7f156e498c43b75293e08744174, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4615f7f156e498c43b75293e08744174, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4615f7f156e498c43b75293e08744174, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
@@ -240,10 +228,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 4615f7f156e498c43b75293e08744174, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4615f7f156e498c43b75293e08744174, type: 3}
       propertyPath: m_Name
       value: SK_CubeI
@@ -254,9 +238,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b2d45805ebb94447e847146464031087, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4615f7f156e498c43b75293e08744174, type: 3}
---- !u!4 &9005509000908624643 stripped
+--- !u!4 &4866977144664467048 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -2311243565383274017, guid: 4615f7f156e498c43b75293e08744174, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6962520412743419060, guid: 4615f7f156e498c43b75293e08744174, type: 3}
   m_PrefabInstance: {fileID: 2527977893587444444}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6748001177535309743
@@ -317,7 +301,7 @@ PrefabInstance:
     - target: {fileID: 5841170620730659372, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_Root
       value: 
-      objectReference: {fileID: 9005509000908624643}
+      objectReference: {fileID: 4866977144664467048}
     - target: {fileID: 7036649441213499536, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_RootOrder
       value: 1

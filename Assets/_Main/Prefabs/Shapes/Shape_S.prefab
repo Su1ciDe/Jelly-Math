@@ -309,9 +309,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b2d45805ebb94447e847146464031087, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d7792650e8cda648ab862fbedd8c98c, type: 3}
---- !u!4 &714485815557567975 stripped
+--- !u!4 &3433601400769096533 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -4119931413111285242, guid: 3d7792650e8cda648ab862fbedd8c98c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6962520412743419060, guid: 3d7792650e8cda648ab862fbedd8c98c, type: 3}
   m_PrefabInstance: {fileID: 5708678824378134497}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7108645187098862058
@@ -368,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 5841170620730659372, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_Root
       value: 
-      objectReference: {fileID: 714485815557567975}
+      objectReference: {fileID: 3433601400769096533}
     - target: {fileID: 7476728192955994475, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_Name
       value: Shape_S

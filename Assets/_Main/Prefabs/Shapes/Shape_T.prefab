@@ -248,18 +248,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -299,10 +287,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
       propertyPath: m_Name
       value: SK_CubeT
@@ -313,9 +297,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b2d45805ebb94447e847146464031087, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
---- !u!4 &8110979715977435095 stripped
+--- !u!4 &7149366033863925017 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -925616194500538758, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6962520412743419060, guid: 9772c3fb4bf243e46a205e5d3cb0a44b, type: 3}
   m_PrefabInstance: {fileID: 263585829233465773}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4393670252755979128
@@ -372,7 +356,7 @@ PrefabInstance:
     - target: {fileID: 5841170620730659372, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_Root
       value: 
-      objectReference: {fileID: 8110979715977435095}
+      objectReference: {fileID: 7149366033863925017}
     - target: {fileID: 7476728192955994475, guid: 60ee4adaccf5d44a2a33f328a037cc7a, type: 3}
       propertyPath: m_Name
       value: Shape_T
