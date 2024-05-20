@@ -7016,6 +7016,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.b
+      value: 0.19121368
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.g
+      value: 0.16950339
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.r
+      value: 2.1138067
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.b
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.g
+      value: 0.5764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.r
+      value: 0.23137255
+      objectReference: {fileID: 0}
     - target: {fileID: 3565937133529419270, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageGrids.Array.size
       value: 1
