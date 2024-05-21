@@ -24,6 +24,8 @@ namespace Managers
 		private void OnDestroy()
 		{
 			Shape.OnPlace -= OnShapePlaced;
+			Shape.OnPlace -= OnShapePlacedLevel3;
+			Shape.OnRemoved -= OnShapeRemoved;
 		}
 
 		private void OnLevelStarted()
@@ -32,7 +34,14 @@ namespace Managers
 			{
 				StartCoroutine(Level1Tutorial());
 			}
+
+			if (LevelManager.Instance.LevelNo.Equals(3))
+			{
+				Level3Tutorial();
+			}
 		}
+
+		#region Level1
 
 		private IEnumerator Level1Tutorial()
 		{
@@ -56,5 +65,36 @@ namespace Managers
 
 			tutorialUI.HideHand();
 		}
+
+		#endregion
+
+		#region Level3
+
+		private void Level3Tutorial()
+		{
+			Shape.OnPlace += OnShapePlacedLevel3;
+		}
+
+		private Shape placedShape;
+
+		private void OnShapePlacedLevel3(Shape shape)
+		{
+			Shape.OnPlace -= OnShapePlacedLevel3;
+
+			placedShape = shape;
+			tutorialUI.ShowSwipe(shape.transform.position, LevelManager.Instance.CurrentLevel.DeckManager.CurrentDeck.transform.position, Helper.MainCamera);
+
+			Shape.OnRemoved += OnShapeRemoved;
+		}
+
+		private void OnShapeRemoved(Shape shape)
+		{
+			if (!placedShape.Equals(shape)) return;
+			Shape.OnRemoved -= OnShapeRemoved;
+			
+			tutorialUI.HideHand();
+		}
+
+		#endregion
 	}
 }

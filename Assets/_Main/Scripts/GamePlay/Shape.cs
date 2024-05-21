@@ -35,6 +35,7 @@ namespace GamePlay
 		private const float MOVE_DURATION = .25f;
 
 		public static event UnityAction<Shape> OnPlace;
+		public static event UnityAction<Shape> OnRemoved;
 
 		private void Awake()
 		{
@@ -143,6 +144,8 @@ namespace GamePlay
 			CanMove = false;
 			transform.DOMove(startingPosition, MOVE_DURATION).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
 			model.DOScale(Vector3.one, MOVE_DURATION).SetEase(Ease.Linear);
+			
+			OnRemoved?.Invoke(this);
 		}
 
 		public bool CanBePlaced()
