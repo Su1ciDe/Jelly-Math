@@ -49,6 +49,8 @@ MonoBehaviour:
   <Timer>k__BackingField: 0
   deckManager: {fileID: 4820665473506977118}
   gridManager: {fileID: 3565937133529419270}
+  shapeColor: {r: 5.992157, g: 0.1882353, b: 2.2588236, a: 1}
+  backgroundColor: {r: 0.38431376, g: 0.7294118, b: 0.9686275, a: 1}
 --- !u!1001 &1203116718663970977
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -47,5 +47,15 @@ namespace GridSystem
 			CurrentValue = value;
 			GridNodeIndicator.SetValue(CurrentValue, showWrong);
 		}
+
+		public void ShowHighlight()
+		{
+			GridNodeIndicator.Highlight();
+		}
+
+		public void HideHighlight()
+		{
+			GridNodeIndicator.HideHighlight();
+		}
 	}
 }

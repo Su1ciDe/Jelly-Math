@@ -28,20 +28,28 @@ namespace GridSystem
 
 		public void ShowHighlight()
 		{
-			if (CurrentNode is not null && !CurrentShape && !IsShowingHighlight)
+			if (CurrentNode)
 			{
-				highlight.gameObject.SetActive(true);
+				CurrentNode.ShowHighlight();
 			}
-			else if (!IsShowingNegativeHighlight)
-			{
-				negativeHighlight.gameObject.SetActive(true);
-			}
+			// if (CurrentNode is not null && !CurrentShape && !IsShowingHighlight)
+			// {
+			// 	highlight.gameObject.SetActive(true);
+			// }
+			// else if (!IsShowingNegativeHighlight)
+			// {
+			// 	negativeHighlight.gameObject.SetActive(true);
+			// }
 		}
 
 		public void HideHighlight()
 		{
-			highlight.gameObject.SetActive(false);
-			negativeHighlight.gameObject.SetActive(false);
+			if (CurrentNode)
+			{
+				CurrentNode.HideHighlight();
+			}
+			// highlight.gameObject.SetActive(false);
+			// negativeHighlight.gameObject.SetActive(false);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using Fiber.Managers;
+using Fiber.Utilities;
 using Lean.Touch;
 using Lofelt.NiceVibrations;
 using Managers;
@@ -20,6 +21,12 @@ namespace Fiber.LevelSystem
 		[SerializeField] private GridManager gridManager;
 		public GridManager GridManager => gridManager;
 
+		[Header("Colors")]
+		[ColorUsage(true,true)]
+		[SerializeField] private Color shapeColor;
+		[SerializeField] private Color backgroundColor;
+		public Color ShapeColor => shapeColor;
+		
 		private int currentTime;
 		private readonly WaitForSeconds waitForSecond = new WaitForSeconds(1);
 		private Coroutine timerCoroutine;
@@ -55,6 +62,8 @@ namespace Fiber.LevelSystem
 			currentTime = Timer;
 
 			gameObject.SetActive(true);
+
+			// Helper.MainCamera.backgroundColor = backgroundColor;
 		}
 
 		public virtual void Play()

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using Fiber.AudioSystem;
 using Fiber.Managers;
 using GridSystem;
 using Lofelt.NiceVibrations;
@@ -7,7 +8,6 @@ using Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using Grid = GridSystem.Grid;
 
 namespace GamePlay
 {
@@ -31,14 +31,18 @@ namespace GamePlay
 
 		private readonly List<GridNodeHolder> touchingGridNodeHolders = new List<GridNodeHolder>();
 
+		private static readonly int color = Shader.PropertyToID("_Color");
 		private const float MOVE_DURATION = .25f;
 
 		public static event UnityAction<Shape> OnPlace;
+		public static event UnityAction<Shape> OnRemoved;
 
 		private void Awake()
 		{
 			SetValue(Value);
 			txtValue.transform.up = Vector3.up;
+
+			GetComponentInChildren<SkinnedMeshRenderer>().material.SetColor(color, LevelManager.Instance.CurrentLevel.ShapeColor);
 		}
 
 		public void Setup(int value)
@@ -62,7 +66,7 @@ namespace GamePlay
 		public void OnPickUp()
 		{
 			HapticManager.Instance.PlayHaptic(0.5f, 0.5f);
-			// AudioManager.Instance.PlayAudio(AudioName.Pickup);
+			AudioManager.Instance.PlayAudio(AudioName.Pickup);
 
 			SetActiveDetectors(true);
 			if (touchingGridNodeHolders.Count > 0)
@@ -115,16 +119,18 @@ namespace GamePlay
 
 			CanMove = false;
 			var pos = GetMiddlePointOfDetectedCells();
-			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack, 3f).OnComplete(() =>
+			transform.DOMove(pos, MOVE_DURATION).SetEase(Ease.OutBack, 2).OnComplete(() =>
 			{
 				CanMove = true;
 				OnPlace?.Invoke(this);
 			});
+			model.DOScale(new Vector3(1.1f, 1.1f, 1), MOVE_DURATION).SetEase(Ease.Linear);
 
 			if (!transform.IsChildOf(GridManager.Instance.CurrentGridStage.transform))
 				transform.SetParent(GridManager.Instance.CurrentGridStage.transform);
 
 			HapticManager.Instance.PlayHaptic(HapticPatterns.PresetType.RigidImpact);
+			AudioManager.Instance.PlayAudio(AudioName.Place);
 
 			IsInGrid = true;
 			IsInDeck = false;
@@ -137,6 +143,9 @@ namespace GamePlay
 
 			CanMove = false;
 			transform.DOMove(startingPosition, MOVE_DURATION).SetEase(Ease.OutExpo).OnComplete(() => CanMove = true);
+			model.DOScale(Vector3.one, MOVE_DURATION).SetEase(Ease.Linear);
+			
+			OnRemoved?.Invoke(this);
 		}
 
 		public bool CanBePlaced()

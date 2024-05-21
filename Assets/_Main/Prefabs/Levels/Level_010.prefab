@@ -5538,6 +5538,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.b
+      value: 0.17707278
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.g
+      value: 2.1138067
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: shapeColor.r
+      value: 1.966936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.b
+      value: 0.6431373
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.g
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: backgroundColor.r
+      value: 0.23921569
+      objectReference: {fileID: 0}
     - target: {fileID: 3565937133529419270, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageGrids.Array.size
       value: 1
@@ -5548,7 +5572,7 @@ PrefabInstance:
       objectReference: {fileID: 1622216282769847046}
     - target: {fileID: 3930341068101061373, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_Name
-      value: _BaseLevel
+      value: Level_010
       objectReference: {fileID: 0}
     - target: {fileID: 4820665473506977118, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageDecks.Array.size
@@ -9781,6 +9805,10 @@ PrefabInstance:
       propertyPath: m_text
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6786426449837675005, guid: 94ba116116cb74c6ab67057be9ef1826, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7022493802687427027, guid: 94ba116116cb74c6ab67057be9ef1826, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -9827,17 +9855,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94ba116116cb74c6ab67057be9ef1826, type: 3}
---- !u!114 &8235993334160667937 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1043660506923095170, guid: 94ba116116cb74c6ab67057be9ef1826, type: 3}
-  m_PrefabInstance: {fileID: 8950891058990997923}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f2155c162dc4830896008c6a152f336, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9016779999952063508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10109,7 +10126,7 @@ PrefabInstance:
     - target: {fileID: 854562399988840488, guid: adeccc0ccfb8c41fcb78927bc8f3ce50, type: 3}
       propertyPath: <ShapesInDeck>k__BackingField.Array.data[3]
       value: 
-      objectReference: {fileID: 8235993334160667937}
+      objectReference: {fileID: 0}
     - target: {fileID: 854562399988840489, guid: adeccc0ccfb8c41fcb78927bc8f3ce50, type: 3}
       propertyPath: m_Name
       value: Deck

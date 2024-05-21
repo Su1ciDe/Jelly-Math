@@ -8,7 +8,7 @@ namespace GridSystem
 	{
 		[field: SerializeField, HideInInspector] public Vector2Int Coordinates { get; private set; }
 		[field: SerializeField, HideInInspector] public GridNodeHolder ParentHolder { get; private set; }
-		
+
 		public void Setup(GridNodeHolder parentHolder, Vector2Int coor)
 		{
 			ParentHolder = parentHolder;
@@ -23,6 +23,16 @@ namespace GridSystem
 		public GridCell GetCell()
 		{
 			return GridManager.Instance.CurrentGridStage.GetCell(Coordinates);
+		}
+
+		public void ShowHighlight()
+		{
+			ParentHolder.ShowHighlight();
+		}
+
+		public void HideHighlight()
+		{
+			ParentHolder.HideHighlight();
 		}
 	}
 }
