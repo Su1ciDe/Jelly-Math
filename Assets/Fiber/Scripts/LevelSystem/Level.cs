@@ -63,7 +63,7 @@ namespace Fiber.LevelSystem
 
 			gameObject.SetActive(true);
 
-			Helper.MainCamera.backgroundColor = backgroundColor;
+			// Helper.MainCamera.backgroundColor = backgroundColor;
 		}
 
 		public virtual void Play()
