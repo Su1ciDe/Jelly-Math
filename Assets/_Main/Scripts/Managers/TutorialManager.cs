@@ -14,15 +14,23 @@ namespace Managers
 		private void OnEnable()
 		{
 			LevelManager.OnLevelStart += OnLevelStarted;
+			LevelManager.OnLevelUnload += Unsub;
 		}
 
 		private void OnDisable()
 		{
 			LevelManager.OnLevelStart -= OnLevelStarted;
+			LevelManager.OnLevelUnload -= Unsub;
 		}
 
 		private void OnDestroy()
 		{
+			Unsub();
+		}
+
+		private void Unsub()
+		{
+			tutorialUI?.HideHand();
 			Shape.OnPlace -= OnShapePlaced;
 			Shape.OnPlace -= OnShapePlacedLevel3;
 			Shape.OnRemoved -= OnShapeRemoved;
@@ -91,7 +99,7 @@ namespace Managers
 		{
 			if (!placedShape.Equals(shape)) return;
 			Shape.OnRemoved -= OnShapeRemoved;
-			
+
 			tutorialUI.HideHand();
 		}
 
