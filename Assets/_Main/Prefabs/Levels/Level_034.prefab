@@ -8978,6 +8978,10 @@ PrefabInstance:
       propertyPath: backgroundColor.r
       value: 0.23137255
       objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: <Timer>k__BackingField
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 3565937133529419270, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageGrids.Array.size
       value: 1
@@ -8988,7 +8992,7 @@ PrefabInstance:
       objectReference: {fileID: 5257885065144407169}
     - target: {fileID: 3930341068101061373, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_Name
-      value: Level_013
+      value: Level_034
       objectReference: {fileID: 0}
     - target: {fileID: 4820665473506977118, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageDecks.Array.size

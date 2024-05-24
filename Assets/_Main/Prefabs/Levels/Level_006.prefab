@@ -8431,7 +8431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: <Timer>k__BackingField
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3565937133529419270, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageGrids.Array.size
@@ -8443,7 +8443,7 @@ PrefabInstance:
       objectReference: {fileID: 5415231960036742778}
     - target: {fileID: 3930341068101061373, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_Name
-      value: Level_005
+      value: Level_006
       objectReference: {fileID: 0}
     - target: {fileID: 4820665473506977118, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageDecks.Array.size

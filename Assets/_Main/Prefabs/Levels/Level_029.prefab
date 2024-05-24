@@ -5730,7 +5730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6782549055659258587, guid: 1a23627da24ea4d2c96af9ed3c437768, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6782549055659258587, guid: 1a23627da24ea4d2c96af9ed3c437768, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6293,7 +6293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6782549055659258587, guid: 1a23627da24ea4d2c96af9ed3c437768, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6782549055659258587, guid: 1a23627da24ea4d2c96af9ed3c437768, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10870,7 +10870,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6786426449837675005, guid: d881d607d6fb04072abea7a12e687979, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6786426449837675005, guid: d881d607d6fb04072abea7a12e687979, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11660,6 +11660,10 @@ PrefabInstance:
       propertyPath: backgroundColor.r
       value: 0.23137255
       objectReference: {fileID: 0}
+    - target: {fileID: 3210734524189124999, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
+      propertyPath: <Timer>k__BackingField
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 3565937133529419270, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageGrids.Array.size
       value: 1
@@ -11670,7 +11674,7 @@ PrefabInstance:
       objectReference: {fileID: 5198451682141344854}
     - target: {fileID: 3930341068101061373, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: m_Name
-      value: Level_014
+      value: Level_029
       objectReference: {fileID: 0}
     - target: {fileID: 4820665473506977118, guid: 8f2be9d31462041a2bdb434ab6e22c7e, type: 3}
       propertyPath: stageDecks.Array.size
