@@ -9,6 +9,7 @@ namespace Fiber.Managers
 		protected override void Awake()
 		{
 			base.Awake();
+			Input.multiTouchEnabled = false;
 			Application.targetFrameRate = 60;
 			Debug.unityLogger.logEnabled = Debug.isDebugBuild;
 		}
